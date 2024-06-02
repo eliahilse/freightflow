@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b3aty32o3l730" path="res://assets/boat_sprite.png" id="2_ix48u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81rx1"]
-size = Vector2(36, 36)
+size = Vector2(32, 32)
 
 [node name="boat" type="CharacterBody2D"]
+texture_filter = 1
 script = ExtResource("1_5v7j4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

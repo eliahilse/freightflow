@@ -1,6 +1,8 @@
 extends TileMap
 
-var layer:int = 0
+var ground_layer:int = 0
+var port_layer:int = 1
+var selector_layer:int = 2
 var source_id:int = 0
 var atlas_coords:Vector2i = Vector2i(-1,0):
 	set(new_coords):
@@ -17,11 +19,12 @@ var ports = {}
 func _process(delta):
 	if(menu_open): return
 	
-	if (last_tile_selected and last_tile_selected != local_to_map(get_global_mouse_position())):
-		erase_cell(2, last_tile_selected)
+	# if (last_tile_selected and last_tile_selected != local_to_map(get_global_mouse_position())):
+	# 	erase_cell(2, last_tile_selected)
+	clear_layer(selector_layer)
 		
 	var tile = local_to_map(get_global_mouse_position())
-	set_cell(2, tile, 1, Vector2i(0,0), 0)
+	set_cell(selector_layer, tile, 1, Vector2i(0,0), 0)
 	last_tile_selected = tile
 	
 	# Add a tile if the left mouse button is pressed according to its global position
@@ -34,12 +37,12 @@ func _process(delta):
 
 func _on_tile_selected(global_mouse_position:Vector2) -> void:
 	var tile : Vector2 = local_to_map(global_mouse_position)
-	set_cell(layer, tile, source_id, atlas_coords)	
+	set_cell(ground_layer, tile, source_id, atlas_coords)	
 	menu_open = false
 	
 func _on_port_selected(global_mouse_position: Vector2) -> void:
 	var tile: Vector2 = local_to_map(global_mouse_position)
-	set_cell(1, tile, source_id, atlas_coords)
+	set_cell(port_layer, tile, source_id, atlas_coords)
 
 	var port = port_scene.instantiate()
 	var port_position: Vector2 = map_to_local(tile)

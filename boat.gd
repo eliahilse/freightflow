@@ -7,6 +7,7 @@ var fork_position = Vector2(40.0, 310.0)
 var port_position = Vector2(500, 500)
 var target_array = [port_position, fork_position]
 var waiting = false
+var game_started = false
 @export var container = 0
 
 @onready var navigation_agent = $NavigationAgent2D
@@ -32,7 +33,7 @@ func get_container():
 func _physics_process(delta):
 	if navigation_agent.is_navigation_finished():
 		return
-	if waiting:
+	if waiting or not game_started:
 		navigation_agent.set_velocity_forced(Vector2.ZERO)
 		return
 		
