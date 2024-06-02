@@ -24,7 +24,7 @@ func _input(event):
 		
 		if (!canvas_layer.visible):
 			# Setze die Position des CanvasLayers
-			canvas_layer.offset = Vector2(event.global_position.x - 84, event.global_position.y - 24)
+			canvas_layer.offset = Vector2(event.global_position.x - 84, event.global_position.y - 56)
 			canvas_layer.visible = true
 			global_mouse_position = event.global_position
 			tile_map.menu_open = true

@@ -15,3 +15,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _set_position(port_position: Vector2):
+	position = port_position
