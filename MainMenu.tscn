@@ -17,7 +17,7 @@ offset_left = 219.0
 offset_top = 58.0
 offset_right = 311.0
 offset_bottom = 81.0
-text = "Color Battle"
+text = "Freight Flow"
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
 
