@@ -53,6 +53,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Wasser"
 flat = true
+alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/1"]
 texture_filter = 1
@@ -67,6 +68,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Wiese"
 flat = true
+alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/6"]
 layout_mode = 0
@@ -77,7 +79,10 @@ texture = SubResource("AtlasTexture_b10ll")
 [node name="2" type="Button" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(64, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Hafen"
 flat = true
+alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/2"]
 texture_filter = 1

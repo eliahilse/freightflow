@@ -17,9 +17,12 @@ extends Node2D
 
 var global_mouse_position:Vector2 = Vector2.ZERO
 var boat_start_position:Vector2
+var target_position:Vector2
 var tile_mode:bool = true
 var port_mode:bool = false
 var is_drawing:bool = false
+
+signal level_completed
 
 func _ready():
 	# Verbinde das `pressed`-Signal mit der `_on_Button_pressed`-Methode
@@ -31,6 +34,7 @@ func _ready():
 	_5.connect("pressed", Callable(self, "_on_Button_5_pressed"))
 	tile_map.atlas_coords = Vector2i(3,2)
 	boat_start_position = boat.global_position
+	target_position = Vector2(510, 610)
 
 func _input(event):
 	# Überprüfe, ob der Event ein Mausklick ist
@@ -52,6 +56,9 @@ func _input(event):
 			_process_tile_change()
 		
 		
+
+func _validate_level_completion():
+	emit_signal("level_completed")
 
 func _restart_scene():
 	get_tree().reload_current_scene()
@@ -78,6 +85,8 @@ func _on_Button_2_pressed():
 	port_mode = true
 	
 func _on_Button_3_pressed():
+	boat.final_target = target_position
+	boat.set_movement_target(target_position)
 	boat.game_started = true
 
 func _on_Button_4_pressed():
@@ -90,4 +99,7 @@ func _on_Button_5_pressed():
 	_restart_scene()
 	
 	
+func _on_boat_target_reached():
+	_validate_level_completion()
+
 

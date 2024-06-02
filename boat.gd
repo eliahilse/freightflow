@@ -3,14 +3,14 @@ extends CharacterBody2D
 class_name Boat
 
 var movement_speed = 100.0
-var fork_position = Vector2(40.0, 310.0)
-var port_position = Vector2(500, 500)
-var target_array = [port_position, fork_position]
+var final_target:Vector2
 var waiting = false
 var game_started = false
 @export var container = 0
 
 @onready var navigation_agent = $NavigationAgent2D
+
+signal target_reached
 
 func _ready():
 	navigation_agent.path_desired_distance = 4.0
@@ -21,7 +21,7 @@ func _ready():
 func actor_setup():
 	await get_tree().physics_frame
 	
-	set_movement_target(target_array.pop_front())
+	#set_movement_target(target_array.pop_front())
 	
 func set_movement_target(movement_target):
 	navigation_agent.target_position = movement_target
@@ -32,6 +32,10 @@ func get_container():
 
 func _physics_process(delta):
 	if navigation_agent.is_navigation_finished():
+		if navigation_agent.target_position == final_target and game_started:
+			#game_started = false
+			emit_signal("target_reached")
+			print("target reached")
 		return
 	if waiting or not game_started:
 		navigation_agent.set_velocity_forced(Vector2.ZERO)
@@ -52,10 +56,11 @@ func _on_port_reached(port_number):
 	container += 1
 	waiting = true
 	await get_tree().create_timer(2.0).timeout
-	set_movement_target(target_array.pop_front())
+	#set_movement_target(target_array.pop_front())
 	waiting = false
 
 
 func _on_fork_reached(next_position):
-	target_array.push_back(next_position)
-	set_movement_target(target_array.pop_front())
+	#target_array.push_back(next_position)
+	#set_movement_target(target_array.pop_front())
+	pass

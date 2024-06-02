@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw1ce38kg37ep"]
+
+[ext_resource type="Script" path="res://LevelCompleted.gd" id="1_gljsf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2g1i8"]
+font_size = 21
+font_color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_gljsf")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Level geschafft
+
+Klicke um zum Hauptmenü zurückzukehren"
+label_settings = SubResource("LabelSettings_2g1i8")
+horizontal_alignment = 1
+vertical_alignment = 1
