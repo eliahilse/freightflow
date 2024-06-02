@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://fxg0kfwxkvv"]
+[gd_scene load_steps=6 format=3 uid="uid://fxg0kfwxkvv"]
 
 [ext_resource type="Texture2D" uid="uid://dhr4kpbrx6ofs" path="res://assets/tileset.png" id="1_wljv0"]
 
@@ -8,6 +8,10 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqayd"]
 atlas = ExtResource("1_wljv0")
 region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b10ll"]
+atlas = ExtResource("1_wljv0")
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hptq"]
 atlas = ExtResource("1_wljv0")
@@ -46,6 +50,8 @@ horizontal_alignment = 1
 [node name="1" type="Button" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(32, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Wasser"
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/1"]
@@ -54,6 +60,19 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("AtlasTexture_qqayd")
+
+[node name="6" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Wiese"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/6"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_b10ll")
 
 [node name="2" type="Button" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(64, 40)
@@ -76,3 +95,8 @@ text = "Level ausführen"
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Level bearbeiten"
+
+[node name="5" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level zurücksetzen"

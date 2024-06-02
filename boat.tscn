@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3aty32o3l730" path="res://assets/boat_sprite.png" id="2_ix48u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81rx1"]
-size = Vector2(32, 32)
+size = Vector2(22, 28)
 
 [node name="boat" type="CharacterBody2D"]
 texture_filter = 1
@@ -19,3 +19,5 @@ shape = SubResource("RectangleShape2D_81rx1")
 debug_color = Color(0.866898, 0.299472, 0.494402, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 200.0
+path_postprocessing = 1
