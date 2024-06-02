@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://caualuwhv6qgs"]
+
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_fsqi4"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("level1Status", "level2Status", "loggedInLabel")]
+script = ExtResource("1_fsqi4")
+level1Status = NodePath("CanvasLayer/Level1Status")
+level2Status = NodePath("CanvasLayer/Level2Status")
+loggedInLabel = NodePath("CanvasLayer/TeamLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 219.0
+offset_top = 58.0
+offset_right = 311.0
+offset_bottom = 81.0
+text = "Color Battle"
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+
+[node name="lvl2" type="Button" parent="CanvasLayer"]
+offset_left = 312.0
+offset_top = 124.0
+offset_right = 374.0
+offset_bottom = 155.0
+text = "Level 2"
+
+[node name="lvl1" type="Button" parent="CanvasLayer"]
+offset_left = 129.0
+offset_top = 124.0
+offset_right = 191.0
+offset_bottom = 155.0
+text = "Level 1"
+
+[node name="Level2Status" type="Label" parent="CanvasLayer"]
+offset_left = 283.5
+offset_top = 95.0
+offset_right = 394.5
+offset_bottom = 118.0
+text = "Logged in as []"
+
+[node name="Level1Status" type="Label" parent="CanvasLayer"]
+offset_left = 105.5
+offset_top = 95.0
+offset_right = 216.5
+offset_bottom = 118.0
+text = "Logged in as []"
+
+[node name="TeamLabel" type="Label" parent="CanvasLayer"]
+offset_left = 191.0
+offset_top = 218.5
+offset_right = 231.0
+offset_bottom = 241.5
+text = "Logged in as []"
+
+[connection signal="pressed" from="CanvasLayer/lvl2" to="." method="_on_lvl_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/lvl1" to="." method="_on_lvl_1_pressed"]

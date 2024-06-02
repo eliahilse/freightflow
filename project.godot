@@ -11,5 +11,14 @@ config_version=5
 [application]
 
 config/name="MeDiDa"
+run/main_scene="res://PlayerSelect.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+UserDataManager="*res://user_data_manager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://6abv0hvugdyb"]
+
+[ext_resource type="Script" path="res://TextureRect.gd" id="1_1b8s2"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 17.0
+script = ExtResource("1_1b8s2")
