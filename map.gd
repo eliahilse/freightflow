@@ -4,6 +4,7 @@ var ground_layer:int = 0
 var port_layer:int = 1
 var selector_layer:int = 2
 var source_id:int = 0
+var terrain:int = 0
 var atlas_coords:Vector2i = Vector2i(-1,0):
 	set(new_coords):
 		atlas_coords = new_coords
@@ -37,7 +38,8 @@ func _process(delta):
 
 func _on_tile_selected(global_mouse_position:Vector2) -> void:
 	var tile : Vector2 = local_to_map(global_mouse_position)
-	set_cell(ground_layer, tile, source_id, atlas_coords)	
+	set_cell(ground_layer, tile, source_id, atlas_coords)
+	set_cells_terrain_connect(ground_layer, [tile], 0, terrain)	
 	menu_open = false
 	
 func _on_port_selected(global_mouse_position: Vector2) -> void:

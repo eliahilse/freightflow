@@ -71,11 +71,13 @@ func _process_port_placement():
 		
 func _on_Button_1_pressed():
 	tile_map.atlas_coords = Vector2i(3,2)
+	tile_map.terrain = 0
 	tile_mode = true
 	port_mode = false
 	
 func _on_Button_6_pressed():
-	tile_map.atlas_coords = Vector2i(0,1)
+	tile_map.atlas_coords = Vector2i(1,4)
+	tile_map.terrain = 1
 	tile_mode = true
 	port_mode = false
 	
