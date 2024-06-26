@@ -37,7 +37,10 @@ func _ready():
 	target_position = Vector2(510, 610)
 
 func _input(event):
-	# Überprüfe, ob der Event ein Mausklick ist
+	#Wenn ein nicht Mausklick erkannt wird, return
+	if event is InputEventKey:
+		return
+	
 	global_mouse_position = event.global_position
 	
 	if global_mouse_position.x > map_view.size.x:
@@ -92,10 +95,8 @@ func _on_Button_3_pressed():
 	boat.game_started = true
 
 func _on_Button_4_pressed():
-	boat.queue_free()
-	boat = boat_scene.instantiate()
+	boat.game_started = false
 	boat.global_position = boat_start_position
-	map_view.add_child(boat)
 	
 func _on_Button_5_pressed():
 	_restart_scene()

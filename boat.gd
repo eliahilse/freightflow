@@ -35,7 +35,6 @@ func _physics_process(delta):
 		if navigation_agent.target_position == final_target and game_started:
 			#game_started = false
 			emit_signal("target_reached")
-			print("target reached")
 		return
 	if waiting or not game_started:
 		navigation_agent.set_velocity_forced(Vector2.ZERO)
