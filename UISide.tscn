@@ -93,6 +93,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("AtlasTexture_1hptq")
 
+[node name="7" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(64, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Verzweigung"
+flat = true
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/7"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="3" type="Button" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(64, 40)
 layout_mode = 2

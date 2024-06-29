@@ -7,6 +7,7 @@ extends Node2D
 @onready var _1 = $"UISide/Control/VBoxContainer/1"
 @onready var _6 = $"UISide/Control/VBoxContainer/6"
 @onready var _2 = $"UISide/Control/VBoxContainer/2"
+@onready var _7 = $"UISide/Control/VBoxContainer/7"
 @onready var _3 = $"UISide/Control/VBoxContainer/3"
 @onready var _4 = $"UISide/Control/VBoxContainer/4"
 @onready var _5 = $"UISide/Control/VBoxContainer/5"
@@ -29,6 +30,7 @@ func _ready():
 	_1.connect("pressed", Callable(self, "_on_Button_1_pressed"))
 	_6.connect("pressed", Callable(self, "_on_Button_6_pressed"))
 	_2.connect("pressed", Callable(self, "_on_Button_2_pressed"))
+	_7.connect("pressed", Callable(self, "_on_Button_7_pressed"))
 	_3.connect("pressed", Callable(self, "_on_Button_3_pressed"))
 	_4.connect("pressed", Callable(self, "_on_Button_4_pressed"))
 	_5.connect("pressed", Callable(self, "_on_Button_5_pressed"))
