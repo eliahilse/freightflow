@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://c8ltqykgllcdc"]
 
 [ext_resource type="Script" path="res://boat.gd" id="1_5v7j4"]
-[ext_resource type="Texture2D" uid="uid://dtdpl7lr3c8h0" path="res://assets/cargoship_noconatiner-down.png" id="2_2365v"]
-[ext_resource type="Texture2D" uid="uid://biesydl7i22xe" path="res://assets/cargoship_noconatiner-up.png" id="3_ay31t"]
-[ext_resource type="Texture2D" uid="uid://cshulijumlnw0" path="res://assets/cargoship_noconatiner-left.png" id="4_4jpia"]
-[ext_resource type="Texture2D" uid="uid://dgdxtqjjitg0d" path="res://assets/cargoship_noconatiner-right.png" id="5_fsfvx"]
+[ext_resource type="Texture2D" path="res://assets/cargoship_noconatiner-down.png" id="2_2365v"]
+[ext_resource type="Texture2D" path="res://assets/cargoship_noconatiner-up.png" id="3_ay31t"]
+[ext_resource type="Texture2D" path="res://assets/cargoship_noconatiner-left.png" id="4_4jpia"]
+[ext_resource type="Texture2D" path="res://assets/cargoship_noconatiner-right.png" id="5_fsfvx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i3qtx"]
 animations = [{

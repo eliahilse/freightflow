@@ -23,6 +23,14 @@ var tile_mode:bool = true
 var port_mode:bool = false
 var is_drawing:bool = false
 
+enum PlacementMode {
+	TILE,
+	PORT,
+	FORK,
+	LOOP,
+}
+var mode: PlacementMode = PlacementMode.TILE
+
 signal level_completed
 
 func _ready():
@@ -49,15 +57,21 @@ func _input(event):
 		return
 	
 	if event is InputEventMouseButton:
-		if port_mode and not tile_mode:
-			is_drawing = false
-			_process_port_placement()
-		if tile_mode and not port_mode:
-			_process_tile_change()
-			is_drawing = event.pressed
+		match mode:
+			PlacementMode.TILE:
+				_process_tile_change()
+				is_drawing = event.pressed
+			PlacementMode.PORT:
+				is_drawing = false
+				_process_port_placement()
+			PlacementMode.FORK:
+				is_drawing = false
+				_process_fork_placement()
+			PlacementMode.LOOP:
+				pass
 			
 	if event is InputEventMouseMotion and is_drawing:
-		if tile_mode and not port_mode:
+		if mode == PlacementMode.TILE:
 			_process_tile_change()
 		
 		
@@ -73,23 +87,32 @@ func _process_tile_change():
 	
 func _process_port_placement():
 	tile_map._on_port_selected(global_mouse_position)
+	
+func _process_fork_placement():
+	tile_map._on_fork_selected(global_mouse_position)
 		
 func _on_Button_1_pressed():
 	tile_map.atlas_coords = Vector2i(3,2)
 	tile_map.terrain = 0
-	tile_mode = true
-	port_mode = false
+	mode = PlacementMode.TILE
+	tile_map.pattern_mode = false
 	
 func _on_Button_6_pressed():
-	tile_map.atlas_coords = Vector2i(1,4)
+	tile_map.atlas_coords = Vector2i(1, 4)
 	tile_map.terrain = 1
-	tile_mode = true
-	port_mode = false
+	mode = PlacementMode.TILE
+	tile_map.pattern_mode = false
 	
 func _on_Button_2_pressed():
-	tile_map.atlas_coords = Vector2i(3,8)
-	tile_mode = false
-	port_mode = true
+	tile_map.atlas_coords = Vector2i(3, 8)
+	mode = PlacementMode.PORT
+	tile_map.pattern_mode = false
+	
+func _on_Button_7_pressed():
+	tile_map.pattern_index = 0
+	tile_map.terrain = -1
+	mode = PlacementMode.FORK
+	tile_map.pattern_mode = true
 	
 func _on_Button_3_pressed():
 	boat.final_target = target_position

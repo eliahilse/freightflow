@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://q37v7mr60u5r"]
+[gd_scene load_steps=3 format=3 uid="uid://q37v7mr60u5r"]
 
 [ext_resource type="Script" path="res://port.gd" id="1_b7yj4"]
-[ext_resource type="Texture2D" uid="uid://8jd27vv1vy0f" path="res://assets/selectedTile.png" id="2_3usak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fccei"]
 size = Vector2(3, 3)
@@ -10,8 +9,5 @@ size = Vector2(3, 3)
 script = ExtResource("1_b7yj4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_fccei")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_3usak")

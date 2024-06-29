@@ -5,10 +5,12 @@ var port_layer: int = 1
 var selector_layer: int = 2
 var source_id: int = 0
 var terrain: int = 0
+var changed_cells: Array[Vector2i]
 var atlas_coords: Vector2i = Vector2i(-1,0):
 	set(new_coords):
 		atlas_coords = new_coords
-		
+var pattern_index: int
+var pattern_mode: bool = false
 var last_tile_selected: Vector2i
 var menu_open: bool = false:
 	set(new_state):
@@ -24,7 +26,10 @@ enum PortOrientation {
 }
 		
 @onready var port_scene = preload("res://port.tscn")
+@onready var fork_scene = preload("res://fork.tscn")
 var ports = {}
+var forks = {}
+
 
 func _process(delta):
 	if(menu_open): return
@@ -46,10 +51,22 @@ func _process(delta):
 		#erase_cell(layer, tile)
 
 func _on_tile_selected(global_mouse_position:Vector2) -> void:
-	var tile : Vector2 = local_to_map(global_mouse_position)
-	set_cell(ground_layer, tile, source_id, atlas_coords)
-	set_cells_terrain_connect(ground_layer, [tile], 0, terrain)	
-	menu_open = false
+	var tile : Vector2i = Vector2i(local_to_map(global_mouse_position))
+	
+	if pattern_mode:
+		var pattern: TileMapPattern = tile_set.get_pattern(pattern_index)
+		set_pattern(ground_layer, tile, pattern)
+		changed_cells = pattern.get_used_cells()
+		for i in range(changed_cells.size()):
+			changed_cells[i] = changed_cells[i] + tile
+	else:
+		set_cell(ground_layer, tile, source_id, atlas_coords)
+		changed_cells = [tile]
+		
+	if terrain == -1:
+		return
+	else:
+		set_cells_terrain_connect(ground_layer, changed_cells, 0, terrain)
 	
 func _on_port_selected(global_mouse_position: Vector2) -> void:
 	var tile: Vector2 = local_to_map(global_mouse_position)
@@ -115,5 +132,20 @@ func _determine_port_orientation(tile: Vector2) -> PortOrientation:
 		return PortOrientation.WEST
 		
 	return PortOrientation.INVALID
+	
+func _on_fork_selected(global_mouse_position: Vector2):
+	var tile: Vector2 = local_to_map(global_mouse_position)
+	var fork = fork_scene.instantiate()
+	var fork_position: Vector2i = map_to_local(tile)
+	fork_position.x += 32
+	fork.set_position(fork_position)
+	
+	var pattern: TileMapPattern = tile_set.get_pattern(pattern_index)
+	set_pattern(ground_layer, tile, pattern)
+	
+	var fork_number = forks.size()
+	forks[fork_number] = fork
+	add_child(fork)
+	print("fork created")
 		
 	
