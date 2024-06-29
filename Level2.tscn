@@ -11,13 +11,13 @@
 script = ExtResource("1_j48u4")
 
 [node name="MapViewContainer" type="SubViewportContainer" parent="."]
-offset_right = 960.0
-offset_bottom = 648.0
+offset_right = 1924.0
+offset_bottom = 1078.0
 stretch = true
 
 [node name="MapView" type="SubViewport" parent="MapViewContainer"]
 handle_input_locally = false
-size = Vector2i(960, 648)
+size = Vector2i(1924, 1078)
 render_target_update_mode = 4
 
 [node name="TileMap" type="TileMap" parent="MapViewContainer/MapView"]

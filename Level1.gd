@@ -34,7 +34,7 @@ func _ready():
 	_5.connect("pressed", Callable(self, "_on_Button_5_pressed"))
 	tile_map.atlas_coords = Vector2i(3,2)
 	boat_start_position = boat.global_position
-	target_position = Vector2(510, 610)
+	target_position = Vector2(848, 1072)
 
 func _input(event):
 	#Wenn ein nicht Mausklick erkannt wird, return
@@ -85,7 +85,7 @@ func _on_Button_6_pressed():
 	port_mode = false
 	
 func _on_Button_2_pressed():
-	tile_map.atlas_coords = Vector2i(0,10)
+	tile_map.atlas_coords = Vector2i(3,8)
 	tile_mode = false
 	port_mode = true
 	

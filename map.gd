@@ -64,17 +64,17 @@ func _on_port_selected(global_mouse_position: Vector2) -> void:
 			port_position.y -= 32
 			
 		PortOrientation.EAST:
-			atlas_coords = Vector2i(0, 10)
+			atlas_coords = Vector2i(3, 8)
 			port_alternative = 0
 			port_position.x += 32
 			
 		PortOrientation.SOUTH:
-			atlas_coords = Vector2i(2, 9)
+			atlas_coords = Vector2i(4, 9)
 			port_alternative = 0
 			port_position.y += 32
 			
 		PortOrientation.WEST:
-			atlas_coords = Vector2i(0, 10)
+			atlas_coords = Vector2i(3, 8)
 			port_alternative = 1
 			port_position.x -= 32
 			
@@ -99,7 +99,7 @@ func _determine_port_orientation(tile: Vector2) -> PortOrientation:
 	#if get_cell_atlas_coords(port_layer, tile) == Vector2i(0, 10):
 	#	return PortOrientation.INVALID
 		
-	if get_cell_atlas_coords(port_layer, tile) in [Vector2i(0, 9), Vector2i(0, 10), Vector2i(2, 9), Vector2i(3, 9)]:
+	if get_cell_atlas_coords(port_layer, tile) in [Vector2i(3, 8), Vector2i(3, 9), Vector2i(4, 9)]:
 		return PortOrientation.INVALID
 	
 	if get_cell_atlas_coords(ground_layer, tile + Vector2(0, -1)) == Vector2i(3, 2):

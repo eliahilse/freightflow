@@ -9,6 +9,7 @@ var game_started = false
 @export var container = 0
 
 @onready var navigation_agent = $NavigationAgent2D
+@onready var animated_sprite = $AnimatedSprite2D
 
 signal target_reached
 
@@ -21,9 +22,11 @@ func _ready():
 func actor_setup():
 	await get_tree().physics_frame
 	
-	#set_movement_target(target_array.pop_front())
+	#set_movement_target(final_target)
 	
 func set_movement_target(movement_target):
+	#print(movement_target)
+	#print(global_position)
 	navigation_agent.target_position = movement_target
 	
 func get_container():
@@ -42,10 +45,26 @@ func _physics_process(delta):
 		
 	var current_agent_position = global_position
 	var next_path_position = navigation_agent.get_next_path_position()
+	var movement_direction: Vector2 = current_agent_position.direction_to(next_path_position)
+	_change_animation(movement_direction)
 	
-	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+	velocity = movement_direction * movement_speed
 
 	move_and_slide()
+	
+func _change_animation(direction: Vector2) -> void:
+	if abs(direction.x) > abs(direction.y):
+		if direction.x > 0:
+			animated_sprite.play("right")
+		else:
+			animated_sprite.play("left")
+	else:
+		if direction.y > 0:
+			animated_sprite.play("down")
+		else:
+			animated_sprite.play("up")
+		
+	
 
 
 func _on_port_reached(port_number):
