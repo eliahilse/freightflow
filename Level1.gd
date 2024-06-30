@@ -46,7 +46,7 @@ func _ready():
 	boat_start_position = boat.global_position
 	target_position = Vector2(848, 1072)
 
-func _input(event):
+func _unhandled_input(event):
 	#Wenn ein nicht Mausklick erkannt wird, return
 	if event is InputEventKey:
 		return
