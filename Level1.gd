@@ -4,13 +4,13 @@ extends Node2D
 # Referenz zum CanvasLayer
 @onready var tile_map = $"MapViewContainer/MapView/TileMap"
 @onready var canvas_layer = $UISide
-@onready var _1 = $"UISide/Control/VBoxContainer/1"
-@onready var _6 = $"UISide/Control/VBoxContainer/6"
-@onready var _2 = $"UISide/Control/VBoxContainer/2"
-@onready var _7 = $"UISide/Control/VBoxContainer/7"
-@onready var _3 = $"UISide/Control/VBoxContainer/3"
-@onready var _4 = $"UISide/Control/VBoxContainer/4"
-@onready var _5 = $"UISide/Control/VBoxContainer/5"
+@onready var _1 = find_child("1", true, false)
+@onready var _2 = find_child("2", true, false)
+@onready var _3 = find_child("3", true, false)
+@onready var _4 = find_child("4", true, false)
+@onready var _5 = find_child("5", true, false)
+@onready var _6 = find_child("6", true, false)
+@onready var _7 = find_child("7", true, false)
 @onready var boat = $"MapViewContainer/MapView/boat"
 @onready var map_view = $"MapViewContainer/MapView"
 
