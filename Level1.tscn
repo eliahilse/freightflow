@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://eft4a8a1ftqo"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_f7kxv"]
-[ext_resource type="Texture2D" path="res://assets/32x32-neu.png" id="2_47dqc"]
+[ext_resource type="Texture2D" uid="uid://dhmuq17d5qywm" path="res://assets/32x32-neu.png" id="2_47dqc"]
 [ext_resource type="Script" path="res://map.gd" id="3_ld381"]
 [ext_resource type="PackedScene" uid="uid://c8ltqykgllcdc" path="res://boat.tscn" id="4_8vo47"]
 [ext_resource type="PackedScene" uid="uid://fxg0kfwxkvv" path="res://UISide.tscn" id="6_mqyfq"]
@@ -79,6 +79,7 @@ texture_region_size = Vector2i(32, 32)
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/next_alternative_id = 2
 3:2/0 = 0
 3:2/0/terrain_set = 0
 3:2/0/terrain = 0
@@ -93,6 +94,10 @@ texture_region_size = Vector2i(32, 32)
 3:2/0/terrains_peering_bit/top_side = 0
 3:2/0/terrains_peering_bit/top_right_corner = 0
 3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5tr61")
+3:2/1 = 1
+3:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/1/physics_layer_0/angular_velocity = 0.0
+3:2/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 4:2/0 = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
@@ -482,12 +487,12 @@ script = ExtResource("1_f7kxv")
 [node name="MapViewContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
 offset_right = 1728.0
-offset_bottom = 1135.0
+offset_bottom = 1080.0
 stretch = true
 
 [node name="MapView" type="SubViewport" parent="MapViewContainer"]
 handle_input_locally = false
-size = Vector2i(1728, 1135)
+size = Vector2i(1728, 1080)
 render_target_update_mode = 4
 
 [node name="TileMap" type="TileMap" parent="MapViewContainer/MapView"]

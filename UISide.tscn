@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://fxg0kfwxkvv"]
+[gd_scene load_steps=7 format=3 uid="uid://fxg0kfwxkvv"]
 
 [ext_resource type="Texture2D" uid="uid://dhr4kpbrx6ofs" path="res://assets/tileset.png" id="1_wljv0"]
+[ext_resource type="Texture2D" uid="uid://dhmuq17d5qywm" path="res://assets/32x32-neu.png" id="2_bx2nu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgotr"]
 font_color = Color(0, 0, 0, 1)
@@ -13,9 +14,9 @@ region = Rect2(96, 64, 32, 32)
 atlas = ExtResource("1_wljv0")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hptq"]
-atlas = ExtResource("1_wljv0")
-region = Rect2(0, 320, 64, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a0nw"]
+atlas = ExtResource("2_bx2nu")
+region = Rect2(96, 256, 64, 32)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 offset = Vector2(1728, 0)
@@ -91,7 +92,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = SubResource("AtlasTexture_1hptq")
+texture = SubResource("AtlasTexture_2a0nw")
 
 [node name="7" type="Button" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(64, 40)

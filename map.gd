@@ -25,10 +25,11 @@ enum PortOrientation {
 	INVALID,
 }
 		
+@onready var boat = get_parent().get_node("boat")
 @onready var port_scene = preload("res://port.tscn")
 @onready var fork_scene = preload("res://fork.tscn")
-var ports = {}
-var forks = {}
+var ports = []
+var forks = []
 
 
 func _process(delta):
@@ -101,9 +102,10 @@ func _on_port_selected(global_mouse_position: Vector2) -> void:
 	
 	set_cell(port_layer, tile, source_id, atlas_coords, port_alternative)
 	port.set_position(port_position)
-	var port_number = ports.size()
-	ports[port_number] = port
+	ports.append(port)
 	add_child(port)
+	port.connect("body_entered", Callable(port, "_on_body_entered"))
+	port.connect("port_reached", Callable(boat, "_on_port_reached"))
 	print("port created")
 	
 	menu_open = false
@@ -135,17 +137,23 @@ func _determine_port_orientation(tile: Vector2) -> PortOrientation:
 	
 func _on_fork_selected(global_mouse_position: Vector2):
 	var tile: Vector2 = local_to_map(global_mouse_position)
+	tile += Vector2(-1, 1)
+	if not forks.is_empty():
+		for fork in forks:
+			if fork._get_position() == map_to_local(tile + Vector2(1, 0)):
+				return
+	
 	var fork = fork_scene.instantiate()
-	var fork_position: Vector2i = map_to_local(tile)
-	fork_position.x += 32
+	var fork_position: Vector2i = map_to_local(tile + Vector2(1, 0))
 	fork.set_position(fork_position)
 	
 	var pattern: TileMapPattern = tile_set.get_pattern(pattern_index)
 	set_pattern(ground_layer, tile, pattern)
 	
-	var fork_number = forks.size()
-	forks[fork_number] = fork
+	forks.append(fork)
 	add_child(fork)
+	fork.connect("body_entered", Callable(fork, "_on_body_entered"))
+	fork.connect("fork_reached", Callable(boat, "_on_fork_reached"))
 	print("fork created")
 		
 	

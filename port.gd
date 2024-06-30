@@ -1,5 +1,7 @@
 extends Area2D
 
+signal port_reached(number: int)
+
 enum PortOperation {
 	ADD,
 	SUB,
@@ -15,6 +17,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func _on_body_entered(body):
+	emit_signal("port_reached", 0)
 
 func _set_position(port_position: Vector2):
 	position = port_position
+
+func _get_position() -> Vector2:
+	return position
