@@ -1,61 +1,84 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvyuayl2aruyv"]
+[gd_scene load_steps=3 format=3 uid="uid://bvyuayl2aruyv"]
 
 [ext_resource type="Script" path="res://PlayerSelect.gd" id="1_abc74"]
+[ext_resource type="Texture2D" uid="uid://baaoddwdajg4h" path="res://assets/logo.png" id="2_cqqsh"]
 
 [node name="PlayerSelect" type="Node2D" node_paths=PackedStringArray("option_button", "text_edit", "register_button")]
 script = ExtResource("1_abc74")
-option_button = NodePath("CanvasLayer/OptionButton")
-text_edit = NodePath("CanvasLayer/TextEdit")
-register_button = NodePath("CanvasLayer/Button")
+option_button = NodePath("CanvasLayer/VBoxContainer/HBoxContainer3/OptionButton")
+text_edit = NodePath("CanvasLayer/VBoxContainer/HBoxContainer/TextEdit")
+register_button = NodePath("CanvasLayer/VBoxContainer/HBoxContainer/Button")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="OptionButton" type="OptionButton" parent="CanvasLayer"]
-offset_left = 181.0
-offset_top = 105.0
-offset_right = 226.0
-offset_bottom = 125.0
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.2029, 27.1383)
+color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
-offset_left = 181.0
-offset_top = 217.0
-offset_right = 333.0
-offset_bottom = 248.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -115.0
+offset_right = 256.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_cqqsh")
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Registriere einen neuen Account"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Your Team Name"
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 344.5
-offset_top = 217.0
-offset_right = 416.5
-offset_bottom = 248.0
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 text = "Register"
 
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 modulate = Color(0.627249, 0.625428, 0.593631, 1)
-offset_left = 283.5
-offset_top = 168.5
-offset_right = 449.5
-offset_bottom = 198.5
-text = "or"
+layout_mode = 2
+text = "oder"
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 218.0
-offset_top = 70.0
-offset_right = 372.0
-offset_bottom = 93.0
-text = "Login to Freight Flow"
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/VBoxContainer"]
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
-offset_left = 344.5
-offset_top = 105.0
-offset_right = 394.5
-offset_bottom = 136.0
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Melde dich an"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
 text = "Login"
 
-[connection signal="item_selected" from="CanvasLayer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_register_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Button" to="." method="_on_register_button_pressed"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer3/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer3/Button2" to="." method="_on_login_button_pressed"]
