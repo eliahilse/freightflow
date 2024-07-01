@@ -6,7 +6,7 @@ var movement_speed = 100.0
 var final_target:Vector2
 var waiting = false
 var game_started = false
-@export var container = 0
+@export var containers: Array[int] = []
 
 @onready var navigation_agent = $NavigationAgent2D
 @onready var animated_sprite = $AnimatedSprite2D
@@ -29,8 +29,8 @@ func set_movement_target(movement_target):
 	#print(global_position)
 	navigation_agent.target_position = movement_target
 	
-func get_container():
-	return container
+func get_containers():
+	return containers
 	
 
 func _physics_process(delta):
@@ -67,18 +67,27 @@ func _change_animation(direction: Vector2) -> void:
 	
 
 
-func _on_port_reached(port_number):
-	var format_string = "Doing something at Port %s"
-	var message = format_string % port_number
-	print(message)
-	container += 1
+func _on_port_reached(container_position, operation, operation_value):
 	waiting = true
+	
+	match operation:
+		0:	#Addition
+			containers[container_position] += operation_value
+		1:	#Subtraktion
+			containers[container_position] -= operation_value
+		2:	#Multiplikation
+			containers[container_position] *= operation_value
+		3:	#Division
+			containers[container_position] /= operation_value
+		4:	#Modulo
+			containers[container_position] %= operation_value
+	
 	await get_tree().create_timer(2.0).timeout
 	#set_movement_target(target_array.pop_front())
 	waiting = false
 
 
-func _on_fork_reached(next_position):
+func _on_fork_reached():
 	#target_array.push_back(next_position)
 	#set_movement_target(target_array.pop_front())
 	pass

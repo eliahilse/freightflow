@@ -12,7 +12,7 @@ func _process(delta):
 	pass
 	
 func _on_body_entered(body):
-	emit_signal("port_reached")
+	emit_signal("fork_reached")
 
 func _set_position(fork_position: Vector2):
 	position = fork_position
