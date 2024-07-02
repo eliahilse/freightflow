@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 offset_bottom = -1080.0
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="Captain" type="TextureRect" parent="Control"]
 layout_mode = 0
 offset_left = 182.0
 offset_top = -231.0
@@ -26,22 +26,31 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
 offset_right = 433.0
 offset_bottom = 155.0
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Dialog" type="Label" parent="Control"]
 layout_mode = 2
-offset_left = 6.0
-offset_right = 408.0
+offset_left = 2.0
+offset_right = 432.0
 offset_bottom = 153.0
-text = "
-"
 label_settings = SubResource("LabelSettings_bgotr")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("2_6nqaf")
 
-[node name="Timer" type="Timer" parent="Control/Label"]
+[node name="Timer" type="Timer" parent="Control/Dialog"]
+wait_time = 0.05
 
-[connection signal="timeout" from="Control/Label/Timer" to="Control/Label" method="_on_Timer_timeout"]
+[node name="Button" type="Button" parent="Control/Dialog"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 430.0
+offset_bottom = 154.0
+flat = true
+
+[connection signal="timeout" from="Control/Dialog/Timer" to="Control/Dialog" method="_on_Timer_timeout"]
+[connection signal="pressed" from="Control/Dialog/Button" to="Control/Dialog" method="next_page"]

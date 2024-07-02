@@ -518,8 +518,8 @@ offset = Vector2(250, 250)
 transform = Transform2D(1, 0, 0, 1, 250, 250)
 
 [node name="Dialog" parent="." instance=ExtResource("7_mmfil")]
-offset = Vector2(1100, 250)
-transform = Transform2D(1, 0, 0, 1, 1100, 250)
+offset = Vector2(1200, 900)
+transform = Transform2D(1, 0, 0, 1, 1200, 900)
 
 [connection signal="level_completed" from="." to="LevelCompleted" method="_on_level_completed"]
 [connection signal="target_reached" from="MapViewContainer/MapView/boat" to="." method="_on_boat_target_reached"]
