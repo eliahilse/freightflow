@@ -55,6 +55,9 @@ func _unhandled_input(event):
 	
 	if global_mouse_position.x > map_view.size.x:
 		return
+		
+	if tile_map.is_tile_locked(global_mouse_position):
+		return
 	
 	if event is InputEventMouseButton:
 		match mode:

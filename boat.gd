@@ -6,7 +6,7 @@ var movement_speed = 100.0
 var final_target:Vector2
 var waiting = false
 var game_started = false
-@export var containers: Array[int] = []
+@export var containers: Array[int] = [0, 0, 0, 0]
 
 @onready var navigation_agent = $NavigationAgent2D
 @onready var animated_sprite = $AnimatedSprite2D
