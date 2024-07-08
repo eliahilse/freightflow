@@ -57,6 +57,7 @@ func _unhandled_input(event):
 		return
 		
 	if tile_map.is_tile_locked(global_mouse_position):
+		print("tile_locked")
 		return
 	
 	if event is InputEventMouseButton:
