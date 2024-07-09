@@ -7,6 +7,7 @@
 font_color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("2_6nqaf")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -39,18 +40,17 @@ label_settings = SubResource("LabelSettings_bgotr")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-script = ExtResource("2_6nqaf")
 
-[node name="Timer" type="Timer" parent="Control/Dialog"]
+[node name="Timer" type="Timer" parent="Control"]
 wait_time = 0.05
 
-[node name="Button" type="Button" parent="Control/Dialog"]
+[node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = -3.0
+offset_left = -1.0
 offset_top = 1.0
-offset_right = 430.0
+offset_right = 432.0
 offset_bottom = 154.0
 flat = true
 
-[connection signal="timeout" from="Control/Dialog/Timer" to="Control/Dialog" method="_on_Timer_timeout"]
-[connection signal="pressed" from="Control/Dialog/Button" to="Control/Dialog" method="next_page"]
+[connection signal="timeout" from="Control/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Control/Button" to="." method="next_page"]

@@ -13,11 +13,11 @@ const USER_DATA_FILE = "res://user_data.json"
 
 func level_state_to_string(level_state):
 	if level_state == LevelState.NEW:
-		return "start level"
+		return "Level starten"
 	elif level_state == LevelState.ONGOING:
-		return "continue level"
+		return "Level fortsetzen"
 	else:
-		return "level finished"
+		return "Level abgeschlossen"
 
 func _ready():
 	load_user_data()

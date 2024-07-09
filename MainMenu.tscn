@@ -54,7 +54,7 @@ text = "Wähle ein Level"
 [node name="TeamLabel" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Logged in as []"
+text = "Angemeldet als  []"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
