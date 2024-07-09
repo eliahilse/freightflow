@@ -22,6 +22,7 @@ var target_position:Vector2
 var tile_mode:bool = true
 var port_mode:bool = false
 var is_drawing:bool = false
+var touch_mode: bool = false
 
 enum PlacementMode {
 	TILE,
@@ -47,6 +48,12 @@ func _ready():
 	target_position = Vector2(848, 1072)
 
 func _unhandled_input(event):
+	if event is InputEventScreenTouch or event is InputEventScreenDrag:
+		touch_mode = true
+	if touch_mode:
+		_handle_touch_input(event)
+		return
+
 	#Wenn ein nicht Mausklick erkannt wird, return
 	if event is InputEventKey:
 		return
@@ -57,7 +64,7 @@ func _unhandled_input(event):
 		return
 		
 	if tile_map.is_tile_locked(global_mouse_position):
-		print("tile_locked")
+		is_drawing = false
 		return
 	
 	if event is InputEventMouseButton:
@@ -78,7 +85,30 @@ func _unhandled_input(event):
 		if mode == PlacementMode.TILE:
 			_process_tile_change()
 		
-		
+func _handle_touch_input(event):
+	global_mouse_position = event.position
+	
+	if tile_map.is_tile_locked(global_mouse_position):
+		is_drawing = false
+		return
+	
+	if event is InputEventScreenTouch:
+		match mode:
+			PlacementMode.TILE:
+				_process_tile_change()
+				is_drawing = event.pressed
+			PlacementMode.PORT:
+				is_drawing = false
+				_process_port_placement()
+			PlacementMode.FORK:
+				is_drawing = false
+				_process_fork_placement()
+			PlacementMode.LOOP:
+				pass
+			
+	if event is InputEventScreenDrag and is_drawing:
+		if mode == PlacementMode.TILE:
+			_process_tile_change()
 
 func _validate_level_completion():
 	emit_signal("level_completed")
