@@ -167,10 +167,13 @@ func _on_fork_selected(global_mouse_position: Vector2):
 		
 func is_tile_locked(global_mouse_postion: Vector2) -> bool:
 	var tile: Vector2 = local_to_map(global_mouse_postion)
-	var locked : bool = false
+	var locked_cell : bool = false
+	var locked_water: bool = false
 	var lock_cell_tile_data = get_cell_tile_data(lock_layer, tile)
-	locked = false if lock_cell_tile_data == null else lock_cell_tile_data.get_custom_data("locked")
-	return locked
+	var water_cell_tile_data = get_cell_tile_data(ground_layer, tile)
+	locked_cell = false if lock_cell_tile_data == null else lock_cell_tile_data.get_custom_data("locked")
+	locked_water = false if water_cell_tile_data == null else water_cell_tile_data.get_custom_data("locked")
+	return locked_cell or locked_water
 	
 	
 	
