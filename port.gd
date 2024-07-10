@@ -4,6 +4,7 @@ var container_position: int
 var operation: PortOperation
 var operation_value: int
 var next_target: Vector2
+signal delete_port_tile(position: Vector2)
 
 signal port_reached(container_position: int, operation: PortOperation, value: int)
 var port_popup_scene = preload("res://port_popup.tscn")
@@ -80,8 +81,7 @@ func open_port_popup():
 		return
 	
 	current_popup = port_popup_scene.instantiate()
-	#add_child(current_popup)
-	call_deferred("add_child", current_popup)
+	add_child(current_popup)
 	current_popup.connect("operation_entered", Callable(self, "_on_popup_operation_entered"))
 	current_popup.connect("delete_port", Callable(self, "_on_popup_port_delete"))
 	current_popup.connect("tree_exited", Callable(self, "_on_popup_closed"))
@@ -99,7 +99,8 @@ func _on_popup_closed():
 	current_popup = null
 	
 func _on_popup_port_delete():
-	# todo @ edwin: delete tilemap 
+	# todo @ edwin: delete tilemap
+	emit_signal("delete_port_tile", self.position)
 	print("Deleting this port")
 	get_parent().remove_child(self)
 	queue_free()

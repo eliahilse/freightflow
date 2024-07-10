@@ -114,6 +114,7 @@ func _on_port_selected(global_mouse_position: Vector2) -> void:
 	add_child(port)
 	port.connect("body_entered", Callable(port, "_on_body_entered"))
 	port.connect("port_reached", Callable(boat, "_on_port_reached"))
+	port.connect("delete_port_tile", Callable(self, "_on_delete_port_tile"))
 	
 	menu_open = false
 	
@@ -240,6 +241,12 @@ func set_ports_new_target(final_target: Vector2) -> void:
 		
 	ports[-1].set_next_target(final_target)
 	return
+
+func _on_delete_port_tile(position: Vector2):
+	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+	
+	for direction in directions:
+		erase_cell(port_layer, local_to_map(position) + direction)
 	
 	
 	
