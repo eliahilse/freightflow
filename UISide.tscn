@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UISide.gd" id="1_kfifo"]
 [ext_resource type="Texture2D" uid="uid://dhr4kpbrx6ofs" path="res://assets/tileset.png" id="1_wljv0"]
-[ext_resource type="Texture2D" uid="uid://ftv2wxnme2wm" path="res://assets/pointer.png" id="2_4qie2"]
+[ext_resource type="Texture2D" path="res://assets/pointer.png" id="2_4qie2"]
 [ext_resource type="Texture2D" uid="uid://dhmuq17d5qywm" path="res://assets/32x32-neu.png" id="2_bx2nu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdo4x"]

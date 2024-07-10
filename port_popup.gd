@@ -20,7 +20,7 @@ func _ready():
 	for operation in PortOperation.keys():
 		operand.add_item(operation)
 	
-	number.virtual_keyboard_enabled = true
+	DisplayServer.virtual_keyboard_show('')
 	
 	number.text_changed.connect(_on_number_text_changed)
 
