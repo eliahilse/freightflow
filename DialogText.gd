@@ -10,6 +10,8 @@ var current_char = 0
 @onready var timer = $Control/Timer
 # Label Referenz
 @onready var dialog = $Control/Dialog
+# AudioPLayer Referenz
+@onready var audio = $Control/AudioStreamPlayer2D
 
 # Platzhalter Funtion
 func _ready():
@@ -27,6 +29,10 @@ func animate_text(new_text):
 	current_char = 0
 	dialog.text = ""
 	visible = true
+	
+	# Audio
+	audio.stream = load("res://assets/AI_Voiceover.mp3")
+	audio.play()
 	
 	# Überprüfe, ob der Timer existiert und setze die Wartezeit
 	if timer:

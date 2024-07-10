@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://fxg0kfwxkvv"]
+[gd_scene load_steps=11 format=3 uid="uid://fxg0kfwxkvv"]
 
 [ext_resource type="Script" path="res://UISide.gd" id="1_kfifo"]
 [ext_resource type="Texture2D" uid="uid://dhr4kpbrx6ofs" path="res://assets/tileset.png" id="1_wljv0"]
-[ext_resource type="Texture2D" path="res://assets/pointer.png" id="2_4qie2"]
+[ext_resource type="Texture2D" uid="uid://ftv2wxnme2wm" path="res://assets/pointer.png" id="2_4qie2"]
 [ext_resource type="Texture2D" uid="uid://dhmuq17d5qywm" path="res://assets/32x32-neu.png" id="2_bx2nu"]
+[ext_resource type="Texture2D" uid="uid://cciq3hhmvka4b" path="res://assets/kreuzung_icon.png" id="5_mt8pk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdo4x"]
 
@@ -157,6 +158,7 @@ alignment = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("5_mt8pk")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://map.gd" id="3_ld381"]
 [ext_resource type="PackedScene" uid="uid://c8ltqykgllcdc" path="res://boat.tscn" id="4_8vo47"]
 [ext_resource type="PackedScene" uid="uid://fxg0kfwxkvv" path="res://UISide.tscn" id="6_mqyfq"]
-[ext_resource type="PackedScene" path="res://dialog.tscn" id="7_mmfil"]
+[ext_resource type="PackedScene" uid="uid://gy2jmdjlcerf" path="res://dialog.tscn" id="7_mmfil"]
 [ext_resource type="PackedScene" uid="uid://bw1ce38kg37ep" path="res://LevelCompleted.tscn" id="7_th3qq"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5e2nv"]
