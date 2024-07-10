@@ -99,7 +99,6 @@ func _on_popup_closed():
 	current_popup = null
 	
 func _on_popup_port_delete():
-	# todo @ edwin: delete tilemap
 	emit_signal("delete_port_tile", self.position)
 	print("Deleting this port")
 	get_parent().remove_child(self)
