@@ -178,8 +178,6 @@ func is_tile_locked(global_mouse_postion: Vector2) -> bool:
 func determine_port_order(start_position: Vector2i, final_target: Vector2) -> void:
 	if ports.is_empty():
 		return
-	if ports.size() == 1:
-		set_ports_new_target(final_target)
 		
 	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)]
 	var queue = [start_position]
@@ -205,13 +203,14 @@ func determine_port_order(start_position: Vector2i, final_target: Vector2) -> vo
 			if get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(6, 1):
 				for fork in forks:
 					if fork._get_position() == map_to_local(neighbor):
-						fork.set_right_target(find_fork_target(neighbor + Vector2i(2, 1), visited))
-						fork.set_down_target(find_fork_target(neighbor + Vector2i(0, 3), visited))
+						ports_in_order[-1].set_next_target(fork.position)
+						fork.set_right_target(find_fork_target(neighbor + Vector2i(2, 1), visited, final_target))
+						fork.set_down_target(find_fork_target(neighbor + Vector2i(0, 3), visited, final_target))
 		
-	ports = ports_in_order
-	set_ports_new_target(final_target)
+	ports_in_order
+	set_ports_new_target(final_target, ports_in_order)
 	
-func find_fork_target(start_position: Vector2i, visited: Array[Vector2i]) -> Vector2:
+func find_fork_target(start_position: Vector2i, visited: Array[Vector2i], final_target: Vector2) -> Vector2:
 	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)]
 	var queue = [start_position]
 	
@@ -232,14 +231,19 @@ func find_fork_target(start_position: Vector2i, visited: Array[Vector2i]) -> Vec
 			if neighbor not in visited and neighbor not in queue and get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(3, 2):
 				queue.append(neighbor)
 				
-	return Vector2(0, 0)
+	return final_target
 	
-func set_ports_new_target(final_target: Vector2) -> void:
-	boat.set_movement_target(ports[0].get_position())
-	for i in range(ports.size() - 1):
-		ports[i].set_next_target(ports[i + 1].get_position())
+func set_ports_new_target(final_target: Vector2, ports_in_order) -> void:
+	boat.set_movement_target(ports_in_order[0].get_position())
+	for i in range(ports_in_order.size() - 1):
+		ports_in_order[i].set_next_target(ports_in_order[i + 1].get_position())
+	
+	if ports_in_order[-1].get_next_target() == Vector2(0, 0):	
+		ports_in_order[-1].set_next_target(final_target)
 		
-	ports[-1].set_next_target(final_target)
+	for port in ports:
+		if port.get_next_target() == Vector2(0, 0):
+			port.set_next_target(final_target)
 	return
 
 func _on_delete_port_tile(position: Vector2):

@@ -16,7 +16,10 @@ var current_char = 0
 # Platzhalter Funtion
 func _ready():
 	visible = false
-	animate_text("Hier wird der Text wie bei einer Schreibmaschine angezeigt;Dies ist die zweite Seite;Und das ist die dritte Seite.")
+	animate_text("HeyHo, willkommen bei Freightflow.
+Ich bin der Käptn und werde dich auf deiner Mission begleiten.
+Wenn du Fragen zur aktuellen Aufgabe hast helfe ich dir gerne weiter. 
+Klicke mich dazu einfach an!")
 
 '''
 Um Text hinzuzufügen diese Funkltion aufrufen

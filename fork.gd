@@ -33,7 +33,7 @@ func _on_body_entered(body):
 	#if evaluate_condition():
 	#	emit_signal("fork_reached", down_target)
 	#else: emit_signal("fork_reached", right_target)
-	emit_signal("fork_reached", right_target)
+	emit_signal("fork_reached", down_target)
 
 func _set_position(fork_position: Vector2):
 	position = fork_position
