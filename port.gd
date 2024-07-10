@@ -49,9 +49,7 @@ func _input(event):
 	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or \
 	   (event is InputEventScreenTouch and event.pressed):
 		var click_position = event.position
-		print("click tracked")
 		if _is_point_inside(click_position):
-			print("Port clicked/touched at position: ", click_position)
 			open_port_popup()
 
 func _is_point_inside(point: Vector2) -> bool:
@@ -77,16 +75,16 @@ func open_port_popup():
 	
 	current_popup = port_popup_scene.instantiate()
 	add_child(current_popup)
-	current_popup.connect("data_entered", Callable(self, "_on_popup_data_entered"))
+	current_popup.connect("operation_entered", Callable(self, "_on_popup_operation_entered"))
 	current_popup.connect("tree_exited", Callable(self, "_on_popup_closed"))
 	current_popup.show()
 
-func _on_popup_data_entered(data):
-	print("Received data from popup: ", data)
-
-	operation_value = int(data)
-	print("Updated operation_value: ", operation_value)
+func _on_popup_operation_entered(op: int, value: int):
+	print("Received operation from popup: ", PortOperation.keys()[op], " with value: ", value)
+	operation = op
+	operation_value = value
+	print("Updated operation: ", PortOperation.keys()[operation], ", operation_value: ", operation_value)
 
 func _on_popup_closed():
 	print("Popup closed")
-	current_popup = null 
+	current_popup = null
