@@ -583,6 +583,7 @@ layer_1/tile_data = PackedInt32Array(4259891, 65537, 7, 2097177, 65536, 7)
 layer_2/name = "selector_layer"
 layer_2/tile_data = PackedInt32Array()
 layer_3/name = "lock_layer"
+layer_3/modulate = Color(1, 1, 1, 0)
 layer_3/z_index = -1
 layer_3/tile_data = PackedInt32Array()
 script = ExtResource("3_ld381")

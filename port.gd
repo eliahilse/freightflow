@@ -37,7 +37,6 @@ func _set_operation_value(value: int) -> void:
 	value = operation_value
 	
 func _on_body_entered(body):
-	print("test")
 	emit_signal("port_reached", container_position, operation, operation_value, next_target)
 
 func _set_position(port_position: Vector2):
@@ -81,7 +80,8 @@ func open_port_popup():
 		return
 	
 	current_popup = port_popup_scene.instantiate()
-	add_child(current_popup)
+	#add_child(current_popup)
+	call_deferred("add_child", current_popup)
 	current_popup.connect("operation_entered", Callable(self, "_on_popup_operation_entered"))
 	current_popup.connect("delete_port", Callable(self, "_on_popup_port_delete"))
 	current_popup.connect("tree_exited", Callable(self, "_on_popup_closed"))

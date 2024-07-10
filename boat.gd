@@ -87,7 +87,5 @@ func _on_port_reached(container_position, operation, operation_value, next_targe
 	waiting = false
 
 
-func _on_fork_reached():
-	#target_array.push_back(next_position)
-	#set_movement_target(target_array.pop_front())
-	pass
+func _on_fork_reached(next_target):
+	set_movement_target(next_target)

@@ -114,7 +114,6 @@ func _on_port_selected(global_mouse_position: Vector2) -> void:
 	add_child(port)
 	port.connect("body_entered", Callable(port, "_on_body_entered"))
 	port.connect("port_reached", Callable(boat, "_on_port_reached"))
-	print("port created")
 	
 	menu_open = false
 	
@@ -163,7 +162,6 @@ func _on_fork_selected(global_mouse_position: Vector2):
 	add_child(fork)
 	fork.connect("body_entered", Callable(fork, "_on_body_entered"))
 	fork.connect("fork_reached", Callable(boat, "_on_fork_reached"))
-	print("fork created")
 		
 func is_tile_locked(global_mouse_postion: Vector2) -> bool:
 	var tile: Vector2 = local_to_map(global_mouse_postion)
@@ -177,9 +175,14 @@ func is_tile_locked(global_mouse_postion: Vector2) -> bool:
 	
 #Breitensuche über dem Fluss um alle Häfen zu finden
 func determine_port_order(start_position: Vector2i, final_target: Vector2) -> void:
-	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+	if ports.is_empty():
+		return
+	if ports.size() == 1:
+		set_ports_new_target(final_target)
+		
+	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)]
 	var queue = [start_position]
-	var visited = []
+	var visited: Array[Vector2i] = []
 	var ports_in_order = []
 	
 	while queue.size() > 0:
@@ -198,13 +201,41 @@ func determine_port_order(start_position: Vector2i, final_target: Vector2) -> vo
 			var neighbor = current + direction
 			if neighbor not in visited and neighbor not in queue and get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(3, 2):
 				queue.append(neighbor)
+			if get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(6, 1):
+				for fork in forks:
+					if fork._get_position() == map_to_local(neighbor):
+						fork.set_right_target(find_fork_target(neighbor + Vector2i(2, 1), visited))
+						fork.set_down_target(find_fork_target(neighbor + Vector2i(0, 3), visited))
 		
 	ports = ports_in_order
 	set_ports_new_target(final_target)
 	
+func find_fork_target(start_position: Vector2i, visited: Array[Vector2i]) -> Vector2:
+	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)]
+	var queue = [start_position]
+	
+	while queue.size() > 0:
+		var current = queue.pop_front()
+		
+		if current in visited:
+			continue
+			
+		visited.append(current)
+		
+		for port in ports:
+			if local_to_map(port._get_position()) == current:
+				return port._get_position()
+				
+		for direction in directions:
+			var neighbor = current + direction
+			if neighbor not in visited and neighbor not in queue and get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(3, 2):
+				queue.append(neighbor)
+				
+	return Vector2(0, 0)
+	
 func set_ports_new_target(final_target: Vector2) -> void:
+	boat.set_movement_target(ports[0].get_position())
 	for i in range(ports.size() - 1):
-		print(i)
 		ports[i].set_next_target(ports[i + 1].get_position())
 		
 	ports[-1].set_next_target(final_target)
