@@ -21,14 +21,14 @@ func _ready():
 
 func update_user_options():
 	option_button.clear()
-	option_button.add_item("Select a user")
+	option_button.add_item("Wähle ein Team")
 	for user in UserDataManager.user_data:
 		option_button.add_item(user)
 	option_button.select(0)
 	
 func _on_login_button_pressed():
 	selected_user = option_button.get_item_text(selected_index)
-	if selected_user == "Select a user":
+	if selected_user == "Wähle ein Team":
 		return
 	UserDataManager.set_current_user(selected_user)
 	get_tree().change_scene_to_file("res://MainMenu.tscn")
@@ -44,7 +44,7 @@ func _on_register_button_pressed():
 func _on_option_button_item_selected(index):
 	selected_user = option_button.get_item_text(index)
 	selected_index = index
-	if selected_user == "Select a user":
+	if selected_user == "Wähle ein Team":
 		selected_user = ""
 
 func get_user_data():

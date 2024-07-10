@@ -12,7 +12,7 @@ func _ready():
 	["level2", level2Status]
 	]
 
-	loggedInLabel.text = "Logged in as Team: " + UserDataManager.get_current_user()
+	loggedInLabel.text = "Angemeldet als: " + UserDataManager.get_current_user()
 	var latestLevel = UserDataManager.get_last_level()
 	for level in levels:
 		level[1].text = UserDataManager.get_user_level_state_formatted(level[0])
