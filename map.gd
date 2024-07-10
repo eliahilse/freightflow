@@ -31,7 +31,6 @@ enum PortOrientation {
 var ports = []
 var forks = []
 
-
 func _process(delta):
 	if(menu_open): return
 	
@@ -70,7 +69,7 @@ func _on_tile_selected(global_mouse_position:Vector2) -> void:
 		set_cells_terrain_connect(ground_layer, changed_cells, 0, terrain)
 	
 func _on_port_selected(global_mouse_position: Vector2) -> void:
-	var tile: Vector2 = local_to_map(global_mouse_position)
+	var tile: Vector2i = local_to_map(global_mouse_position)
 	var port = port_scene.instantiate()
 	var port_position: Vector2i = map_to_local(tile)
 	var orientation: PortOrientation = _determine_port_orientation(tile)
@@ -136,18 +135,22 @@ func _determine_port_orientation(tile: Vector2) -> PortOrientation:
 	return PortOrientation.INVALID
 	
 func _on_fork_selected(global_mouse_position: Vector2):
-	var tile: Vector2 = local_to_map(global_mouse_position)
-	tile += Vector2(-1, 1)
+	var tile: Vector2i = local_to_map(global_mouse_position)
+	tile += Vector2i(-1, 1)
 	if not forks.is_empty():
 		for fork in forks:
-			if fork._get_position() == map_to_local(tile + Vector2(1, 0)):
+			if fork._get_position() == map_to_local(tile + Vector2i(1, 0)):
 				return
 	
 	var fork = fork_scene.instantiate()
-	var fork_position: Vector2i = map_to_local(tile + Vector2(1, 0))
+	var fork_position: Vector2i = map_to_local(tile + Vector2i(1, 0))
 	fork.set_position(fork_position)
 	
 	var pattern: TileMapPattern = tile_set.get_pattern(pattern_index)
+	changed_cells = pattern.get_used_cells()
+	for i in range(changed_cells.size()):
+			changed_cells[i] = changed_cells[i] + tile
+			
 	set_pattern(ground_layer, tile, pattern)
 	
 	forks.append(fork)
@@ -156,4 +159,9 @@ func _on_fork_selected(global_mouse_position: Vector2):
 	fork.connect("fork_reached", Callable(boat, "_on_fork_reached"))
 	print("fork created")
 		
+func is_tile_locked(global_mouse_postion: Vector2) -> bool:
+	var tile: Vector2 = local_to_map(global_mouse_postion)
+	return get_cell_tile_data(ground_layer, tile).get_custom_data("locked")
+	
+	
 	
