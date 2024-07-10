@@ -67,7 +67,7 @@ func _change_animation(direction: Vector2) -> void:
 	
 
 
-func _on_port_reached(container_position, operation, operation_value):
+func _on_port_reached(container_position, operation, operation_value, next_target):
 	waiting = true
 	
 	match operation:
@@ -82,8 +82,8 @@ func _on_port_reached(container_position, operation, operation_value):
 		4:	#Modulo
 			containers[container_position] %= operation_value
 	
+	set_movement_target(next_target)
 	await get_tree().create_timer(2.0).timeout
-	#set_movement_target(target_array.pop_front())
 	waiting = false
 
 

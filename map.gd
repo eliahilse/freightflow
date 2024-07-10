@@ -175,5 +175,40 @@ func is_tile_locked(global_mouse_postion: Vector2) -> bool:
 	locked_water = false if water_cell_tile_data == null else water_cell_tile_data.get_custom_data("locked")
 	return locked_cell or locked_water
 	
+#Breitensuche über dem Fluss um alle Häfen zu finden
+func determine_port_order(start_position: Vector2i, final_target: Vector2) -> void:
+	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+	var queue = [start_position]
+	var visited = []
+	var ports_in_order = []
+	
+	while queue.size() > 0:
+		var current = queue.pop_front()
+		
+		if current in visited:
+			continue
+			
+		visited.append(current)
+		
+		for port in ports:
+			if local_to_map(port._get_position()) == current:
+				ports_in_order.append(port)
+				
+		for direction in directions:
+			var neighbor = current + direction
+			if neighbor not in visited and neighbor not in queue and get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(3, 2):
+				queue.append(neighbor)
+		
+	ports = ports_in_order
+	set_ports_new_target(final_target)
+	
+func set_ports_new_target(final_target: Vector2) -> void:
+	for i in range(ports.size() - 1):
+		print(i)
+		ports[i].set_next_target(ports[i + 1].get_position())
+		
+	ports[-1].set_next_target(final_target)
+	return
+	
 	
 	

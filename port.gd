@@ -3,6 +3,7 @@ extends Area2D
 var container_position: int
 var operation: PortOperation
 var operation_value: int
+var next_target: Vector2
 
 signal port_reached(container_position: int, operation: PortOperation, value: int)
 var port_popup_scene = preload("res://port_popup.tscn")
@@ -37,13 +38,19 @@ func _set_operation_value(value: int) -> void:
 	
 func _on_body_entered(body):
 	print("test")
-	emit_signal("port_reached", container_position, operation, operation_value)
+	emit_signal("port_reached", container_position, operation, operation_value, next_target)
 
 func _set_position(port_position: Vector2):
 	position = port_position
 
 func _get_position() -> Vector2:
 	return position
+	
+func set_next_target(target: Vector2) -> void:
+	next_target = target
+	
+func get_next_target() -> Vector2:
+	return next_target
 	
 func _input(event):
 	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or \

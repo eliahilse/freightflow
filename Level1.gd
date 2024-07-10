@@ -155,6 +155,7 @@ func _on_Button_7_pressed():
 func _on_Button_3_pressed():
 	boat.final_target = target_position
 	boat.set_movement_target(target_position)
+	tile_map.determine_port_order(tile_map.local_to_map(boat_start_position), target_position)
 	boat.game_started = true
 
 func _on_Button_4_pressed():
