@@ -160,6 +160,9 @@ func _on_Button_4_pressed():
 	boat.game_started = false
 	boat.global_position = boat_start_position
 	
+func _on_cursor_pressed():
+	mode = PlacementMode.CURSOR
+	
 func _on_Button_5_pressed():
 	_restart_scene()
 	
