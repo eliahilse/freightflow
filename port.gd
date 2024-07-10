@@ -83,15 +83,25 @@ func open_port_popup():
 	current_popup = port_popup_scene.instantiate()
 	add_child(current_popup)
 	current_popup.connect("operation_entered", Callable(self, "_on_popup_operation_entered"))
+	current_popup.connect("delete_port", Callable(self, "_on_popup_port_delete"))
 	current_popup.connect("tree_exited", Callable(self, "_on_popup_closed"))
 	current_popup.show()
 
-func _on_popup_operation_entered(op: int, value: int):
+func _on_popup_operation_entered(op: int, value: int, slot: int):
 	print("Received operation from popup: ", PortOperation.keys()[op], " with value: ", value)
 	operation = op
 	operation_value = value
+	container_position = slot
 	print("Updated operation: ", PortOperation.keys()[operation], ", operation_value: ", operation_value)
 
 func _on_popup_closed():
 	print("Popup closed")
 	current_popup = null
+	
+func _on_popup_port_delete():
+	# todo @ edwin: delete tilemap 
+	print("Deleting this port")
+	get_parent().remove_child(self)
+	queue_free()
+
+	
