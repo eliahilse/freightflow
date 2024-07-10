@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://fxg0kfwxkvv"]
+[gd_scene load_steps=10 format=3 uid="uid://fxg0kfwxkvv"]
 
 [ext_resource type="Script" path="res://UISide.gd" id="1_kfifo"]
 [ext_resource type="Texture2D" uid="uid://dhr4kpbrx6ofs" path="res://assets/tileset.png" id="1_wljv0"]
+[ext_resource type="Texture2D" uid="uid://ftv2wxnme2wm" path="res://assets/pointer.png" id="2_4qie2"]
 [ext_resource type="Texture2D" uid="uid://dhmuq17d5qywm" path="res://assets/32x32-neu.png" id="2_bx2nu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdo4x"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_u834w"]
+color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqayd"]
 atlas = ExtResource("1_wljv0")
 region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_u834w"]
-color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b10ll"]
 atlas = ExtResource("1_wljv0")
@@ -82,7 +83,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = SubResource("AtlasTexture_qqayd")
+texture = ExtResource("2_4qie2")
 
 [node name="MenuSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
