@@ -11,6 +11,7 @@ extends Node2D
 @onready var _5 = find_child("5", true, false)
 @onready var _6 = find_child("6", true, false)
 @onready var _7 = find_child("7", true, false)
+@onready var _cursor = find_child("Cursor", true, false)
 @onready var boat = $"MapViewContainer/MapView/boat"
 @onready var map_view = $"MapViewContainer/MapView"
 
@@ -25,6 +26,7 @@ var is_drawing:bool = false
 var touch_mode: bool = false
 
 enum PlacementMode {
+	CURSOR,
 	TILE,
 	PORT,
 	FORK,
@@ -43,6 +45,7 @@ func _ready():
 	_3.connect("pressed", Callable(self, "_on_Button_3_pressed"))
 	_4.connect("pressed", Callable(self, "_on_Button_4_pressed"))
 	_5.connect("pressed", Callable(self, "_on_Button_5_pressed"))
+	_cursor.connect("pressed", Callable(self, "_on_cursor_pressed"))
 	tile_map.atlas_coords = Vector2i(3,2)
 	boat_start_position = boat.global_position
 	target_position = Vector2(848, 1072)
@@ -156,6 +159,9 @@ func _on_Button_3_pressed():
 func _on_Button_4_pressed():
 	boat.game_started = false
 	boat.global_position = boat_start_position
+	
+func _on_cursor_pressed():
+	mode = PlacementMode.CURSOR
 	
 func _on_Button_5_pressed():
 	_restart_scene()
