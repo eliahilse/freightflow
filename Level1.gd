@@ -72,6 +72,8 @@ func _ready():
 						Platiere dazu einfach einen Hafen an einem Ufer und stelle ein, wie viele Container auf welchen Platz des Schiffs geladen werden sollen")
 
 func _unhandled_input(event):
+	if boat.game_started:
+		return
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:
 		touch_mode = true
 	if touch_mode:

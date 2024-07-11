@@ -72,6 +72,8 @@ func _ready():
 						Tippe mich wie immer an, um deine Aufgabe zu erfahren")
 
 func _unhandled_input(event):
+	if boat.game_started:
+		return
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:
 		touch_mode = true
 	if touch_mode:
@@ -137,7 +139,7 @@ func _handle_touch_input(event):
 
 func _validate_level_completion():
 	var current_container_values = boat.get_containers()
-	if current_container_values != [0, 0, 0, 0]:
+	if 10 in current_container_values:
 		emit_signal("level_completed")
 	else: 
 		emit_signal("level_failed")
