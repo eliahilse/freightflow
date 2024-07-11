@@ -40,7 +40,8 @@ func _set_operation_value(value: int) -> void:
 	value = operation_value
 	
 func _on_body_entered(body):
-	emit_signal("port_reached", container_position, container_position2, operation, operation_value, target_position,next_target)
+	if body.is_in_group("boat"):
+		emit_signal("port_reached", container_position, container_position2, operation, operation_value, target_position,next_target)
 
 func _set_position(port_position: Vector2):
 	position = port_position

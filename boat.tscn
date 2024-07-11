@@ -44,7 +44,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81rx1"]
 size = Vector2(32, 32)
 
-[node name="boat" type="CharacterBody2D"]
+[node name="boat" type="CharacterBody2D" groups=["boat"]]
 texture_filter = 1
 script = ExtResource("1_5v7j4")
 
