@@ -142,7 +142,7 @@ func _validate_level_completion():
 	if 10 in current_container_values:
 		emit_signal("level_completed")
 	else: 
-		emit_signal("level_failed")
+		emit_signal("level_failed", 2)
 
 func _restart_scene():
 	get_tree().reload_current_scene()

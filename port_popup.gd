@@ -32,8 +32,6 @@ func _ready():
 		slotSelect2.add_item(str(i+1))
 		targetSelect.add_item(str(i+1))
 	
-	DisplayServer.virtual_keyboard_show('')
-	
 	number.text_changed.connect(_on_number_text_changed)
 
 func _on_number_text_changed():

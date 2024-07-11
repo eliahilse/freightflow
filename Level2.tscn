@@ -627,4 +627,5 @@ offset = Vector2(1200, 900)
 transform = Transform2D(1, 0, 0, 1, 1200, 900)
 
 [connection signal="level_completed" from="." to="LevelCompleted" method="_on_level_completed"]
+[connection signal="level_failed" from="." to="LevelCompleted" method="_on_level_failed"]
 [connection signal="target_reached" from="MapViewContainer/MapView/boat" to="." method="_on_boat_target_reached"]

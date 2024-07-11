@@ -33,8 +33,8 @@ func animate_text(new_text):
 	visible = true
 	
 	# Audio
-	#audio.stream = load("res://assets/AI_Voiceover.mp3")
-	#audio.play()
+	audio.stream = load("res://assets/AI_Voiceover.mp3")
+	audio.play()
 	
 	# Überprüfe, ob der Timer existiert und setze die Wartezeit
 	if timer:

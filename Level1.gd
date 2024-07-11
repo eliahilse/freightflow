@@ -140,9 +140,9 @@ func _handle_touch_input(event):
 func _validate_level_completion():
 	var current_container_values = boat.get_containers()
 	if current_container_values != [0, 0, 0, 0]:
-		emit_signal("level_completed")
+		emit_signal("level_failed", 1)
 	else: 
-		emit_signal("level_failed")
+		emit_signal("level_failed", 1)
 
 func _restart_scene():
 	get_tree().reload_current_scene()

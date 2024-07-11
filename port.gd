@@ -90,21 +90,21 @@ func open_port_popup(click_position):
 	current_popup.show()
 
 func _on_popup_operation_entered(op: int, value: int, slot: int, slot2: int, target: int):
-	print("Received operation from popup: ", PortOperation.keys()[op], " with value: ", value)
+	#print("Received operation from popup: ", PortOperation.keys()[op], " with value: ", value)
 	operation = op
 	operation_value = value
 	container_position = slot
 	container_position2 = slot2
 	target_position = target
-	print("Updated operation: ", PortOperation.keys()[operation], ", operation_value: ", operation_value)
+	#print("Updated operation: ", PortOperation.keys()[operation], ", operation_value: ", operation_value)
 
 func _on_popup_closed():
-	print("Popup closed")
+	#print("Popup closed")
 	current_popup = null
 	
 func _on_popup_port_delete():
 	emit_signal("delete_port_tile", self.position)
-	print("Deleting this port")
+	#print("Deleting this port")
 	get_parent().remove_child(self)
 	queue_free()
 

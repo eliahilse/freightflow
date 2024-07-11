@@ -47,8 +47,8 @@ color = Color(0.0430392, 0.0430392, 0.0430391, 1)
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 2
 offset_left = 6.0
-offset_right = 186.0
-offset_bottom = 23.0
+offset_right = 227.0
+offset_bottom = 1438.0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 
@@ -221,7 +221,6 @@ text = "0"
 horizontal_alignment = 2
 
 [node name="Captain" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 icon = ExtResource("7_dwqec")
 flat = true

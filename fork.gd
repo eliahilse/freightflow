@@ -114,19 +114,19 @@ func open_port_popup():
 	current_popup.show()
 
 func _on_popup_operation_entered(op: int, value: int, slot: int):
-	print("Received operation from popup: ", Condition.keys()[op], " with value: ", value)
+	#print("Received operation from popup: ", Condition.keys()[op], " with value: ", value)
 	condition = op
 	condition_value = value
 	container_position = slot
-	print("Updated operation: ", Condition.keys()[condition], ", operation_value: ", condition_value)
+	#print("Updated operation: ", Condition.keys()[condition], ", operation_value: ", condition_value)
 
 func _on_popup_closed():
-	print("Popup closed")
+	#print("Popup closed")
 	current_popup = null
 	
 func _on_popup_fork_delete():
 	# todo @ edwin: delete tilemap
 	emit_signal("delete_fork_tile", self.position)
-	print("Deleting this fork")
+	#print("Deleting this fork")
 	get_parent().remove_child(self)
 	queue_free()
