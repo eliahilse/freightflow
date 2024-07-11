@@ -13,13 +13,20 @@ var current_char = 0
 # AudioPLayer Referenz
 @onready var audio = $Control/AudioStreamPlayer2D
 
+signal show_small_captain
+
 # Platzhalter Funtion
 func _ready():
 	visible = false
-	animate_text("HeyHo, willkommen bei Freightflow.
-Ich bin der Käptn und werde dich auf deiner Mission begleiten.
-Wenn du Fragen zur aktuellen Aufgabe hast helfe ich dir gerne weiter. 
-Klicke mich dazu einfach an!")
+	animate_text("Test")
+				
+#HeyHo, willkommen bei Freightflow.
+#				Ich bin der Käptn und werde dich auf deiner Mission begleiten.
+#				Wenn du Fragen zur aktuellen Aufgabe hast, helfe ich dir gerne weiter. 
+#				Tippe mich dazu einfach an!;
+#				In diesem Level lernst du wie die Häfen funktionieren;
+#				An einem Hafen können Container auf das Schiff geladen und vom Schiff entladen werden;
+#				Platiere dazu einfach einen Hafen an einem Ufer und stelle ein, wie viele Container auf welchen Platz des Schiffs geladen werden sollen
 
 '''
 Um Text hinzuzufügen diese Funkltion aufrufen
@@ -71,3 +78,4 @@ func next_page():
 			print("Gesamter Text angezeigt: ", dialog.text)  # Debugging-Ausgabe
 	if current_page == pages.size():
 		visible = false
+		emit_signal("show_small_captain")

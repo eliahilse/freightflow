@@ -12,6 +12,7 @@ var game_started = false
 @onready var animated_sprite = $AnimatedSprite2D
 
 signal target_reached
+signal values_updated
 
 func _ready():
 	navigation_agent.path_desired_distance = 4.0
@@ -68,6 +69,7 @@ func _change_animation(direction: Vector2) -> void:
 
 
 func _on_port_reached(container_position, operation, operation_value, next_target):
+	await get_tree().create_timer(0.5).timeout
 	waiting = true
 	
 	match operation:
@@ -78,12 +80,14 @@ func _on_port_reached(container_position, operation, operation_value, next_targe
 		2:	#Multiplikation
 			containers[container_position] *= operation_value
 		3:	#Division
-			containers[container_position] /= operation_value
+			if operation_value != 0:
+				containers[container_position] /= operation_value
 		4:	#Modulo
 			containers[container_position] %= operation_value
 	
+	emit_signal("values_updated")
 	set_movement_target(next_target)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	waiting = false
 
 

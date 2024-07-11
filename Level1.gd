@@ -15,6 +15,13 @@ extends Node2D
 @onready var boat = $"MapViewContainer/MapView/boat"
 @onready var map_view = $"MapViewContainer/MapView"
 
+@onready var slot1_label = find_child("Slot1", true, false)
+@onready var slot2_label = find_child("Slot2", true, false)
+@onready var slot3_label = find_child("Slot3", true, false)
+@onready var slot4_label = find_child("Slot4", true, false)
+
+@onready var instruction_label = find_child("Instruction", true, false)
+
 @onready var boat_scene = preload("res://boat.tscn")
 
 var global_mouse_position:Vector2 = Vector2.ZERO
@@ -24,6 +31,7 @@ var tile_mode:bool = true
 var port_mode:bool = false
 var is_drawing:bool = false
 var touch_mode: bool = false
+var expected_container_values = [1, 0, 0, 0]
 
 enum PlacementMode {
 	CURSOR,
@@ -35,6 +43,7 @@ enum PlacementMode {
 var mode: PlacementMode = PlacementMode.TILE
 
 signal level_completed
+signal level_failed
 
 func _ready():
 	# Verbinde das `pressed`-Signal mit der `_on_Button_pressed`-Methode
@@ -46,9 +55,11 @@ func _ready():
 	_4.connect("pressed", Callable(self, "_on_Button_4_pressed"))
 	_5.connect("pressed", Callable(self, "_on_Button_5_pressed"))
 	_cursor.connect("pressed", Callable(self, "_on_cursor_pressed"))
+	boat.connect("values_updated", Callable(self, "_on_boat_values_updated"))
 	tile_map.atlas_coords = Vector2i(3,2)
 	boat_start_position = boat.global_position
 	target_position = Vector2(848, 1072)
+	instruction_label.text = "Ändere den Wert einer Containerposition"
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:
@@ -115,7 +126,11 @@ func _handle_touch_input(event):
 			_process_tile_change()
 
 func _validate_level_completion():
-	emit_signal("level_completed")
+	var current_container_values = boat.get_containers()
+	if current_container_values != [0, 0, 0, 0]:
+		emit_signal("level_completed")
+	else: 
+		emit_signal("level_failed")
 
 func _restart_scene():
 	get_tree().reload_current_scene()
@@ -167,6 +182,13 @@ func _on_cursor_pressed():
 	
 func _on_Button_5_pressed():
 	_restart_scene()
+	
+func _on_boat_values_updated():
+	var current_container_values = boat.get_containers()
+	slot1_label.text = str(current_container_values[0])
+	slot2_label.text = str(current_container_values[1])
+	slot3_label.text = str(current_container_values[2])
+	slot4_label.text = str(current_container_values[3])
 	
 	
 func _on_boat_target_reached():

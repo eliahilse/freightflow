@@ -27,7 +27,7 @@ func _ready():
 		
 	for i in range(4):
 		slotSelect.add_item(str(i+1))
-	
+	print(DisplayServer.has_feature(DisplayServer.FEATURE_VIRTUAL_KEYBOARD))
 	DisplayServer.virtual_keyboard_show('')
 	
 	number.text_changed.connect(_on_number_text_changed)
