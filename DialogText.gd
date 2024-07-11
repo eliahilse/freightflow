@@ -24,7 +24,7 @@ func _ready():
 Um Text hinzuzufügen diese Funkltion aufrufen
 Wenn eine Erklärung über mehere Seiten gehen soll ein mit ';' trennen
 '''
-func animate_text(new_text):
+func animate_text(new_text, play_audio: bool):
 	# Teile den String in Seiten auf
 	pages = new_text.split(";")
 	current_page = 0
@@ -33,8 +33,9 @@ func animate_text(new_text):
 	visible = true
 	
 	# Audio
-	audio.stream = load("res://assets/AI_Voiceover.mp3")
-	audio.play()
+	if play_audio:
+		audio.stream = load("res://assets/AI_Voiceover.mp3")
+		audio.play()
 	
 	# Überprüfe, ob der Timer existiert und setze die Wartezeit
 	if timer:

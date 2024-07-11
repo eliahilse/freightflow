@@ -69,7 +69,7 @@ func _ready():
 	dialog.animate_text("Versuchen wir mal etwas komplizierteres;
 						Ich habe dir bereits den Flussverlauf vorgegeben und du musst nur die Häfen platzieren und diese, sowie die Verzweigung, einstellen;
 						Außerdem sind bereits schon einige Container aufgeladen;
-						Tippe mich wie immer an, um deine Aufgabe zu erfahren")
+						Tippe mich wie immer an, um deine Aufgabe zu erfahren", false)
 
 func _unhandled_input(event):
 	if boat.game_started:

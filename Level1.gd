@@ -69,7 +69,7 @@ func _ready():
 						Tippe mich dazu einfach an!;
 						In diesem Level lernst du wie die Häfen funktionieren;
 						An einem Hafen können Container auf das Schiff geladen und vom Schiff entladen werden;
-						Platiere dazu einfach einen Hafen an einem Ufer und stelle ein, wie viele Container auf welchen Platz des Schiffs geladen werden sollen")
+						Platiere dazu einfach einen Hafen an einem Ufer und stelle ein, wie viele Container auf welchen Platz des Schiffs geladen werden sollen", true)
 
 func _unhandled_input(event):
 	if boat.game_started:
@@ -140,7 +140,7 @@ func _handle_touch_input(event):
 func _validate_level_completion():
 	var current_container_values = boat.get_containers()
 	if current_container_values != [0, 0, 0, 0]:
-		emit_signal("level_failed", 1)
+		emit_signal("level_completed")
 	else: 
 		emit_signal("level_failed", 1)
 
