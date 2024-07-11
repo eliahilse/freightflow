@@ -59,7 +59,7 @@ func _input(event):
 	   (event is InputEventScreenTouch and event.pressed):
 		var click_position = event.position
 		if _is_point_inside(click_position):
-			open_port_popup()
+			open_port_popup(click_position)
 
 func _is_point_inside(point: Vector2) -> bool:
 	var shape = $CollisionShape2D.shape
@@ -78,13 +78,12 @@ func _is_point_inside(point: Vector2) -> bool:
 		push_error("Unsupported collision shape")
 		return false
 
-func open_port_popup():
+func open_port_popup(click_position):
 	if current_popup != null and is_instance_valid(current_popup):
 		return
 	
 	current_popup = port_popup_scene.instantiate()
 	add_child(current_popup)
-	print(current_popup)
 	current_popup.connect("operation_entered", Callable(self, "_on_popup_operation_entered"))
 	current_popup.connect("delete_port", Callable(self, "_on_popup_port_delete"))
 	current_popup.connect("tree_exited", Callable(self, "_on_popup_closed"))
