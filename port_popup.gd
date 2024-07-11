@@ -14,7 +14,9 @@ enum PortOperation {
 @onready var operand = $HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Operand
 @onready var deleteButton = $HBoxContainer/VBoxContainer/HBoxContainer2/Delete
 @onready var slotSelect = $HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/Slot
+@onready var slotSelect2 = $HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer5/Slot
 @onready var number = $HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/Number
+@onready var targetSelect = $HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4/Target
 @onready var apply_button = $HBoxContainer/VBoxContainer/MarginContainer/ApplyButton
 
 func _ready():
@@ -24,8 +26,11 @@ func _ready():
 	for operation in PortOperation.keys():
 		operand.add_item(operation)
 		
+	slotSelect2.add_item("-")
 	for i in range(4):
 		slotSelect.add_item(str(i+1))
+		slotSelect2.add_item(str(i+1))
+		targetSelect.add_item(str(i+1))
 	
 	DisplayServer.virtual_keyboard_show('')
 	
@@ -50,8 +55,10 @@ func _on_number_text_changed():
 func _on_apply_button_pressed():
 	var selected_operation = operand.selected
 	var selected_slot = slotSelect.selected
+	var selected_slot2 = slotSelect2.selected - 1
 	var input_value = int(number.text) if number.text.is_valid_int() else 0
-	emit_signal("operation_entered", selected_operation, input_value, selected_slot)
+	var target_slot = targetSelect.selected
+	emit_signal("operation_entered", selected_operation, input_value, selected_slot, selected_slot2, target_slot)
 	queue_free()
 
 func _on_delete_button_pressed():

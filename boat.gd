@@ -68,22 +68,24 @@ func _change_animation(direction: Vector2) -> void:
 	
 
 
-func _on_port_reached(container_position, operation, operation_value, next_target):
+func _on_port_reached(container_position, container_position2, operation, operation_value, target_position, next_target):
 	await get_tree().create_timer(0.5).timeout
 	waiting = true
+	if container_position2 != -1:
+		operation_value = containers[container_position2]
 	
 	match operation:
 		0:	#Addition
-			containers[container_position] += operation_value
+			containers[target_position] = containers[container_position] + operation_value
 		1:	#Subtraktion
-			containers[container_position] -= operation_value
+			containers[target_position] = containers[container_position] - operation_value
 		2:	#Multiplikation
-			containers[container_position] *= operation_value
+			containers[target_position] = containers[container_position] * operation_value
 		3:	#Division
 			if operation_value != 0:
-				containers[container_position] /= operation_value
+				containers[target_position] = containers[container_position] / operation_value
 		4:	#Modulo
-			containers[container_position] %= operation_value
+			containers[target_position] = containers[container_position] % operation_value
 	
 	emit_signal("values_updated")
 	set_movement_target(next_target)

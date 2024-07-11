@@ -42,7 +42,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Timer" type="Timer" parent="Control"]
-wait_time = 0.05
+wait_time = 0.06
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0

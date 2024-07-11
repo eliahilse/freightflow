@@ -11,8 +11,8 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Panel" type="Panel"]
-offset_right = 312.0
-offset_bottom = 200.0
+offset_right = 411.0
+offset_bottom = 157.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qc6lt")
 script = ExtResource("1_5a7iq")
 
@@ -54,7 +54,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Platz"
+text = "Platz 1"
 
 [node name="Slot" type="OptionButton" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -71,6 +71,16 @@ custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 allow_reselect = true
 
+[node name="VBoxContainer5" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+text = "Platz 2"
+
+[node name="Slot" type="OptionButton" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+
 [node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -83,6 +93,16 @@ custom_minimum_size = Vector2(120, 35)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "5"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "Ziel"
+
+[node name="Target" type="OptionButton" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2

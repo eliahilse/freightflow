@@ -566,6 +566,7 @@ texture_filter = 1
 offset_right = 1664.0
 offset_bottom = 1080.0
 stretch = true
+metadata/_edit_use_anchors_ = true
 
 [node name="MapView" type="SubViewport" parent="MapViewContainer"]
 handle_input_locally = false

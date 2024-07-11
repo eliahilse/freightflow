@@ -203,7 +203,9 @@ func determine_port_order(start_position: Vector2i, final_target: Vector2) -> vo
 			if get_cell_atlas_coords(ground_layer, neighbor) == Vector2i(6, 1):
 				for fork in forks:
 					if fork._get_position() == map_to_local(neighbor):
-						ports_in_order[-1].set_next_target(fork.position)
+						if ports_in_order.is_empty():
+							boat.set_movement_target(fork._get_position())
+						else: ports_in_order[-1].set_next_target(fork.position)
 						fork.set_right_target(find_fork_target(neighbor + Vector2i(2, 1), visited, final_target))
 						fork.set_down_target(find_fork_target(neighbor + Vector2i(0, 3), visited, final_target))
 		
@@ -234,6 +236,9 @@ func find_fork_target(start_position: Vector2i, visited: Array[Vector2i], final_
 	return final_target
 	
 func set_ports_new_target(final_target: Vector2, ports_in_order) -> void:
+	if ports_in_order.is_empty():
+		boat.set_movement_target(final_target)
+		return
 	boat.set_movement_target(ports_in_order[0].get_position())
 	for i in range(ports_in_order.size() - 1):
 		ports_in_order[i].set_next_target(ports_in_order[i + 1].get_position())

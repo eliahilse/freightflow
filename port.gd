@@ -1,8 +1,10 @@
 extends Area2D
 
 var container_position: int
+var container_position2: int
 var operation: PortOperation
 var operation_value: int
+var target_position: int
 var next_target: Vector2
 signal delete_port_tile(position: Vector2)
 
@@ -38,7 +40,7 @@ func _set_operation_value(value: int) -> void:
 	value = operation_value
 	
 func _on_body_entered(body):
-	emit_signal("port_reached", container_position, operation, operation_value, next_target)
+	emit_signal("port_reached", container_position, container_position2, operation, operation_value, target_position,next_target)
 
 func _set_position(port_position: Vector2):
 	position = port_position
@@ -82,16 +84,19 @@ func open_port_popup():
 	
 	current_popup = port_popup_scene.instantiate()
 	add_child(current_popup)
+	print(current_popup)
 	current_popup.connect("operation_entered", Callable(self, "_on_popup_operation_entered"))
 	current_popup.connect("delete_port", Callable(self, "_on_popup_port_delete"))
 	current_popup.connect("tree_exited", Callable(self, "_on_popup_closed"))
 	current_popup.show()
 
-func _on_popup_operation_entered(op: int, value: int, slot: int):
+func _on_popup_operation_entered(op: int, value: int, slot: int, slot2: int, target: int):
 	print("Received operation from popup: ", PortOperation.keys()[op], " with value: ", value)
 	operation = op
 	operation_value = value
 	container_position = slot
+	container_position2 = slot2
+	target_position = target
 	print("Updated operation: ", PortOperation.keys()[operation], ", operation_value: ", operation_value)
 
 func _on_popup_closed():

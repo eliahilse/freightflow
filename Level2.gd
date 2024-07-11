@@ -32,7 +32,7 @@ var tile_mode:bool = true
 var port_mode:bool = false
 var is_drawing:bool = false
 var touch_mode: bool = false
-var expected_container_values = [1, 0, 0, 0]
+var expected_container_values = [0, 0, 0, 0]
 
 enum PlacementMode {
 	CURSOR,
@@ -41,7 +41,7 @@ enum PlacementMode {
 	FORK,
 	LOOP,
 }
-var mode: PlacementMode = PlacementMode.TILE
+var mode: PlacementMode = PlacementMode.CURSOR
 
 signal level_completed
 signal level_failed
@@ -57,19 +57,19 @@ func _ready():
 	_5.connect("pressed", Callable(self, "_on_Button_5_pressed"))
 	_cursor.connect("pressed", Callable(self, "_on_cursor_pressed"))
 	boat.connect("values_updated", Callable(self, "_on_boat_values_updated"))
+	_1.disabled = true
 	tile_map.atlas_coords = Vector2i(3,2)
 	boat_start_position = boat.global_position
+	boat.containers[0] = 127
 	_on_boat_values_updated()
 	target_position = Vector2(848, 1072)
-	instruction_label.text = "Ändere den Wert einer Containerposition"
+	tile_map._on_fork_selected(tile_map.map_to_local(Vector2(25, 19)))
+	instruction_label.text = "Um erfolgreich das Ziel zu erreichen, soll am Ende an Position 2 die Anzahl der Container der Quersumme der Position 1 entsprechen"
 	
-	dialog.animate_text("HeyHo, willkommen bei Freightflow.
-						Ich bin der Käptn und werde dich auf deiner Mission begleiten.
-						Wenn du Fragen zur aktuellen Aufgabe hast, helfe ich dir gerne weiter. 
-						Tippe mich dazu einfach an!;
-						In diesem Level lernst du wie die Häfen funktionieren;
-						An einem Hafen können Container auf das Schiff geladen und vom Schiff entladen werden;
-						Platiere dazu einfach einen Hafen an einem Ufer und stelle ein, wie viele Container auf welchen Platz des Schiffs geladen werden sollen")
+	dialog.animate_text("Versuchen wir mal etwas komplizierteres;
+						Ich habe dir bereits den Flussverlauf vorgegeben und du musst nur die Häfen platzieren und diese, sowie die Verzweigung, einstellen;
+						Außerdem sind bereits schon einige Container aufgeladen;
+						Tippe mich wie immer an, um deine Aufgabe zu erfahren")
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:

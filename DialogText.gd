@@ -18,15 +18,7 @@ signal show_small_captain
 # Platzhalter Funtion
 func _ready():
 	visible = false
-	animate_text("Test")
-				
-#HeyHo, willkommen bei Freightflow.
-#				Ich bin der Käptn und werde dich auf deiner Mission begleiten.
-#				Wenn du Fragen zur aktuellen Aufgabe hast, helfe ich dir gerne weiter. 
-#				Tippe mich dazu einfach an!;
-#				In diesem Level lernst du wie die Häfen funktionieren;
-#				An einem Hafen können Container auf das Schiff geladen und vom Schiff entladen werden;
-#				Platiere dazu einfach einen Hafen an einem Ufer und stelle ein, wie viele Container auf welchen Platz des Schiffs geladen werden sollen
+
 
 '''
 Um Text hinzuzufügen diese Funkltion aufrufen
