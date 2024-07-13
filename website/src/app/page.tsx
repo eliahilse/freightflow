@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         <div className="fixed bottom-0 left-0 flex h-48 w-full max-w-[100vw] items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://tu-dresden.de/ing/informatik/smt/ddi?set_language=en"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -105,6 +106,13 @@ export default function Home() {
           </p>
         </a>
 
+      </div>
+      <div className={"absolute pb-6 text-sm text-neutral-700 justify-between bottom-0 left-0 w-[100vw] flex justify-center px-[25vw]"}>
+        <span>Copyright © 2024. All Rights Reserved.</span>
+        <div className={"flex gap-x-4"}>
+          <Link href={"/legal/privacy-policy"} className={"hover:text-neutral-500"}>Privacy Policy</Link>
+          <Link href={"/legal/imprint"} className={"hover:text-neutral-500"}>Imprint</Link>
+        </div>
       </div>
     </main>
   );
