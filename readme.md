@@ -5,6 +5,9 @@
 ### Stack
 GoDot 4
 
+### Theming
+Color for UI backgrounds is: `#0b0b0b`
+
 ### Compatibility
 
 #### Input
@@ -21,3 +24,4 @@ Linux (Ubuntu 22.04)
 
 NextJS 14 (React, Typescript, TailwindCSS), statically exported.
 Deployed [here](https://freightflow.elia.vc) (via Cloudflare Pages).
+

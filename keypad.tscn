@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbykqc8gi08so"]
+
+[ext_resource type="Script" path="res://keypad.gd" id="1_esvoa"]
+
+[node name="Keypad" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 500.0
+offset_bottom = 550.0
+script = ExtResource("1_esvoa")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 202.0
+offset_bottom = 274.0
+columns = 3
+
+[node name="Button1" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "3"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "4"
+
+[node name="Button5" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "5"
+
+[node name="Button6" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "6"
+
+[node name="Button7" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "7"
+
+[node name="Button8" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "8"
+
+[node name="Button9" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "9"
+
+[node name="ButtonDot" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+flat = true
+
+[node name="Button0" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "0"
+
+[node name="ButtonBack" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "⌫"
