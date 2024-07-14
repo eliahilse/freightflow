@@ -1,0 +1,250 @@
+[gd_scene load_steps=13 format=3 uid="uid://fxg0kfwxkvv"]
+
+[ext_resource type="Script" path="res://UISide.gd" id="1_kfifo"]
+[ext_resource type="Texture2D" uid="uid://dhr4kpbrx6ofs" path="res://assets/tileset.png" id="1_wljv0"]
+[ext_resource type="Texture2D" uid="uid://ftv2wxnme2wm" path="res://assets/pointer.png" id="2_4qie2"]
+[ext_resource type="Texture2D" uid="uid://dhmuq17d5qywm" path="res://assets/32x32-neu.png" id="2_bx2nu"]
+[ext_resource type="Texture2D" uid="uid://cciq3hhmvka4b" path="res://assets/kreuzung_icon.png" id="5_mt8pk"]
+[ext_resource type="Texture2D" uid="uid://dd81iv8uaasny" path="res://assets/ship_side_display_outlined.png" id="6_vgvyu"]
+[ext_resource type="Texture2D" uid="uid://eft5g1btyh3p" path="res://assets/small_captain.png" id="7_dwqec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdo4x"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_u834w"]
+color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqayd"]
+atlas = ExtResource("1_wljv0")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b10ll"]
+atlas = ExtResource("1_wljv0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a0nw"]
+atlas = ExtResource("2_bx2nu")
+region = Rect2(96, 256, 64, 32)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+offset = Vector2(1664, 0)
+transform = Transform2D(1, 0, 0, 1, 1664, 0)
+script = ExtResource("1_kfifo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 256.0
+grow_vertical = 2
+pivot_offset = Vector2(160, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 1080.0
+color = Color(0.0430392, 0.0430392, 0.0430391, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 227.0
+offset_bottom = 1438.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 25
+
+[node name="HeadlineLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Wähle Cursor aus"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Cursor" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(32, 40)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qdo4x")
+text = "Cursor"
+flat = true
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/Cursor"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_4qie2")
+
+[node name="MenuSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u834w")
+
+[node name="1" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(32, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Wasser"
+flat = true
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/1"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_qqayd")
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u834w")
+
+[node name="6" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Wiese"
+flat = true
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/6"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_b10ll")
+
+[node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u834w")
+
+[node name="2" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(64, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Hafen"
+flat = true
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/2"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_2a0nw")
+
+[node name="HSeparator3" type="HSeparator" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u834w")
+
+[node name="7" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(64, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Fork"
+flat = true
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/7"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_mt8pk")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 545
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="3" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 40)
+layout_mode = 2
+text = "Level ausführen"
+
+[node name="4" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level bearbeiten"
+
+[node name="5" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level zurücksetzen"
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_vgvyu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 50.0
+offset_right = 154.0
+offset_bottom = 100.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Slot1" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Slot3" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Slot2" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="Slot4" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="Captain" type="Button" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+icon = ExtResource("7_dwqec")
+flat = true
+
+[node name="InstructionBackground" type="ColorRect" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Captain"]
+visible = false
+layout_mode = 0
+offset_left = -9.0
+offset_top = 205.0
+offset_right = 201.0
+offset_bottom = 387.0
+
+[node name="Instruction" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Captain/InstructionBackground"]
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BackToMainMenu" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.851092, 0, 0.174709, 1)
+text = "Zurück zum Hauptmenü"
