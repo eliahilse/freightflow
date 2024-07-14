@@ -12,8 +12,8 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Panel" type="Panel"]
-offset_right = 378.0
-offset_bottom = 200.0
+offset_right = 343.0
+offset_bottom = 213.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qc6lt")
 script = ExtResource("1_nn3qb")
 
